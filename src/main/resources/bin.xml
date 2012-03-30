@@ -11,7 +11,7 @@
     	<!-- add version.txt file -->
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>${project.artifactId}</outputDirectory>
             <includes>
                 <include>version.txt</include>
             </includes>
@@ -20,7 +20,7 @@
     	<!-- add readme file -->
         <fileSet>
             <directory>${basedir}</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>${project.artifactId}</outputDirectory>
             <includes>
                 <include>README</include>
             </includes>
@@ -29,17 +29,26 @@
     	<!-- add command files -->
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory></outputDirectory>
+            <outputDirectory>${project.artifactId}</outputDirectory>
             <includes>
                 <include>${project.artifactId}.*</include>
             </includes>
         </fileSet>
 
-    	<!-- add jar files -->
+    	<!-- add configuration files -->
+        <fileSet>
+            <directory>${basedir}/configuration</directory>
+             <outputDirectory>${project.artifactId}/properties</outputDirectory>
+           <includes>
+                <include>**/*</include>
+            </includes>
+        </fileSet>
+
+        <!-- add jar files -->
         <fileSet>
             <directory>${project.build.directory}</directory>
-            <outputDirectory></outputDirectory>
-            <includes>
+             <outputDirectory>${project.artifactId}</outputDirectory>
+           <includes>
                 <!--<include>**/*.jar</include>-->
                 <include>${project.artifactId}-${project.version}-jar-with-dependencies.jar</include>
             </includes>

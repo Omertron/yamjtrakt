@@ -12,10 +12,12 @@ import java.util.InvalidPropertiesFormatException;
 import java.util.Map;
 import java.util.Properties;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class YamjTraktApp {
 
     private static final Logger logger = Logger.getLogger(YamjTraktApp.class);
+    private static final String logFilename = YamjTraktApp.class.getSimpleName();
     private static final String FILE_CREDENTIALS = "Credentials.xml";
     private static Credentials credentials;
     private static Library appLibrary = new Library();
@@ -24,6 +26,15 @@ public class YamjTraktApp {
 
     public static void main(String[] args) {
         credentials = new Credentials();
+        System.err.println("Log filename: " + logFilename);
+        System.setProperty("file.name", logFilename);
+        PropertyConfigurator.configure("properties/log4j.properties");
+
+        logger.info("YAMJ Trakt.tv App");
+        logger.info("~~~~ ~~~~~~~~ ~~~");
+        logger.info("     Version: " + YamjTraktApp.class.getPackage().getSpecificationVersion());
+        logger.info("  Build date: " + YamjTraktApp.class.getPackage().getImplementationTitle());
+        logger.info("Java version: " + java.lang.System.getProperties().getProperty("java.version"));
 
         // Open the GUI
         MainWindow.windowMain(args);
@@ -75,7 +86,7 @@ public class YamjTraktApp {
         YamjTraktApp.credentials = credentials;
     }
 
-    public static void saveCredentials(Credentials credentials) {
+    public static boolean saveCredentials(Credentials credentials) {
         if (credentials.isValid()) {
             OutputStream os = null;
             try {
@@ -85,10 +96,13 @@ public class YamjTraktApp {
                 props.setProperty("apikey", credentials.getApikey());
                 os = new FileOutputStream(FILE_CREDENTIALS);
                 props.storeToXML(os, "Credentials file written by YamjTraktTv", "UTF8");
+                return true;
             } catch (FileNotFoundException ex) {
                 logger.warn("File not found! " + ex.getMessage());
+                return false;
             } catch (IOException ex) {
                 logger.warn("Error writing file: " + ex.getMessage());
+                return false;
             } finally {
                 try {
                     os.close();
@@ -99,6 +113,7 @@ public class YamjTraktApp {
         } else {
             logger.warn("Credentials are not valid!");
             logger.warn("Not saving!");
+            return false;
         }
     }
 
@@ -134,5 +149,4 @@ public class YamjTraktApp {
     public static void setCompleteMoviesProcessed(boolean completeMoviesProcessed) {
         YamjTraktApp.completeMoviesProcessed = completeMoviesProcessed;
     }
-
 }

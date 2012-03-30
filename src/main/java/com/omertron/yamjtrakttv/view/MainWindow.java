@@ -386,7 +386,6 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        dlgVideo.setMaximumSize(new java.awt.Dimension(542, 322));
         dlgVideo.setMinimumSize(new java.awt.Dimension(542, 322));
 
         txtVideoTitle.setEditable(false);
@@ -702,7 +701,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnCredSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredSaveActionPerformed
         validateCredentials();
-        YamjTraktApp.saveCredentials(YamjTraktApp.getCredentials());
+        boolean result = YamjTraktApp.saveCredentials(YamjTraktApp.getCredentials());
+        if (result) {
+            lblCredResponse.setText("Credentials saved OK");
+        } else {
+            lblCredResponse.setText("Failed to save the credentials");
+        }
+
     }//GEN-LAST:event_btnCredSaveActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed

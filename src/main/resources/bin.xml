@@ -17,12 +17,13 @@
             </includes>
         </fileSet>
 
-    	<!-- add readme file -->
+    	<!-- add readme & licence files -->
         <fileSet>
             <directory>${basedir}</directory>
             <outputDirectory>${project.artifactId}</outputDirectory>
             <includes>
-                <include>README</include>
+                <include>README*</include>
+                <include>LICENCE*</include>
             </includes>
         </fileSet>
 

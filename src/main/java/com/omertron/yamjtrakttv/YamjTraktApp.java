@@ -1,15 +1,10 @@
 package com.omertron.yamjtrakttv;
 
-import com.jakewharton.trakt.entities.Movie;
-import com.jakewharton.trakt.entities.TvShow;
 import com.omertron.yamjtrakttv.model.Credentials;
 import com.omertron.yamjtrakttv.model.Library;
-import com.omertron.yamjtrakttv.model.Video;
-import com.omertron.yamjtrakttv.tools.TraktTools;
 import com.omertron.yamjtrakttv.view.MainWindow;
 import java.io.*;
 import java.util.InvalidPropertiesFormatException;
-import java.util.Map;
 import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
@@ -38,6 +33,7 @@ public class YamjTraktApp {
         logger.info("     Version: " + YamjTraktApp.class.getPackage().getSpecificationVersion());
         logger.info("  Build date: " + YamjTraktApp.class.getPackage().getImplementationTitle());
         logger.info("Java version: " + java.lang.System.getProperties().getProperty("java.version"));
+        logger.info("");
 
         // Open the GUI
         MainWindow.windowMain(args);

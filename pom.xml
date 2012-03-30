@@ -9,10 +9,19 @@
     <packaging>jar</packaging>
 
     <name>YamjTraktTv</name>
-    <url>http://maven.apache.org</url>
+    <description>YAMJ Trakt.tv App</description>
+    <url>https://github.com/Omertron/yamjtrakt</url>
+    <issueManagement></issueManagement>
+    <ciManagement></ciManagement>
+    <scm>
+        <connection>scm:git:git://github.com/Omertron/yamjtrakt.git</connection>
+        <developerConnection>scm:git:git@github.com:Omertron/yamjtrakt.git</developerConnection>
+        <url>http://github.com/Omertron/yamjtrakt.git</url>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <distribution.format>zip</distribution.format>
     </properties>
 
     <dependencies>
@@ -45,19 +54,115 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.3</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.7</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-version-txt</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <property name="jar.filename" value="${project.artifactId}-${project.version}-jar-with-dependencies.jar" />
+                                <property name="version_file" value="${project.build.directory}/version.txt" />
+                                <property name="header_line" value="Yet Another Movie Jukebox - Trakt.tv App${line.separator}" />
+                                <property name="build_date_line" value="Build Date: ${timestamp}${line.separator}" />
+                                <property name="version_line" value="Version: ${project.version}${line.separator}" />
+                                <echo>Writing version file: ${version_file}</echo>
+                                <echo file="${version_file}" append="false">${header_line}</echo>
+                                <echo file="${version_file}" append="true">${build_date_line}</echo>
+                                <echo file="${version_file}" append="true">${version_line}</echo>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-run-files</id>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <property name="jar.filename" value="${project.artifactId}-${project.version}-jar-with-dependencies.jar" />
+                                <property name="batch_file" value="${project.build.directory}/${project.artifactId}.cmd" />
+                                <property name="shell_file" value="${project.build.directory}/${project.artifactId}.sh" />
+
+                                <property name="line_1_batch" value="@echo off${line.separator}" />
+                                <property name="line_1_shell" value="#!/bin/sh${line.separator}" />
+                                <property name="line_2" value="echo Yet Another Movie Jukebox - Trakt.tv App${line.separator}" />
+                                <property name="line_3" value="echo Version: ${project.version}${line.separator}" />
+                                <property name="line_run" value="java -jar ${jar.filename}" />
+
+                                <echo>Writing batch file: ${batch_file}</echo>
+                                <echo file="${batch_file}" append="false">${line_1_batch}</echo>
+                                <echo file="${batch_file}" append="true">${line_2}</echo>
+                                <echo file="${batch_file}" append="true">${line_3}</echo>
+                                <echo file="${batch_file}" append="true">${line_run}</echo>
+
+                                <echo>Writing shell file: ${shell_file}</echo>
+                                <echo file="${shell_file}" append="false">${line_1_shell}</echo>
+                                <echo file="${shell_file}" append="true">${line_2}</echo>
+                                <echo file="${shell_file}" append="true">${line_3}</echo>
+                                <echo file="${shell_file}" append="true">${line_run}</echo>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.omertron.yamjtrakttv.App</mainClass>
+                            <mainClass>com.omertron.yamjtrakttv.YamjTraktApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>distro-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/resources/bin.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

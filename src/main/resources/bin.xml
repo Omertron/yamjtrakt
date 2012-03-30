@@ -39,19 +39,20 @@
     	<!-- add properties files -->
         <fileSet>
             <directory>${basedir}/properties</directory>
-             <outputDirectory>${project.artifactId}/properties</outputDirectory>
-           <includes>
+            <outputDirectory>${project.artifactId}/properties</outputDirectory>
+            <includes>
                 <include>**/*</include>
             </includes>
         </fileSet>
 
         <!-- add jar files -->
         <fileSet>
-            <directory>${project.build.directory}</directory>
-             <outputDirectory>${project.artifactId}</outputDirectory>
-           <includes>
+            <directory>${basedir}/release</directory>
+            <outputDirectory>${project.artifactId}</outputDirectory>
+            <includes>
                 <!--<include>**/*.jar</include>-->
-                <include>${project.artifactId}-${project.version}-jar-with-dependencies.jar</include>
+                <!--<include>${project.artifactId}-${project.version}-jar-with-dependencies.jar</include>-->
+                <include>*-jar-with-dependencies.jar</include>
             </includes>
         </fileSet>
 

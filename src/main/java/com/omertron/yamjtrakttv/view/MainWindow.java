@@ -59,6 +59,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void updateButtons() {
         btnLoadFile.setEnabled(YamjTraktApp.isCompleteMoviesLoaded());
         btnProcess.setEnabled(YamjTraktApp.isCompleteMoviesProcessed() && YamjTraktApp.getCredentials().isValid());
+        updateLibraryStats(YamjTraktApp.getLibrary().getStats());
     }
 
     /*
@@ -635,16 +636,16 @@ public class MainWindow extends javax.swing.JFrame {
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         fileChooser.setFileFilter(new FileFilterFilename("CompleteMovies.xml"));
 
-        if (StringUtils.isBlank(YamjTraktApp.getAppLibrary().getPathCompleteMovie())) {
+        if (StringUtils.isBlank(YamjTraktApp.getLibrary().getPathCompleteMovie())) {
             fileChooser.setCurrentDirectory(new File(DEFAULT_DIRECTORY));
         } else {
-            fileChooser.setCurrentDirectory(new File(YamjTraktApp.getAppLibrary().getPathCompleteMovie()));
+            fileChooser.setCurrentDirectory(new File(YamjTraktApp.getLibrary().getPathCompleteMovie()));
         }
 
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            YamjTraktApp.getAppLibrary().setPathCompleteMovie(file.getAbsolutePath());
+            YamjTraktApp.getLibrary().setPathCompleteMovie(file.getAbsolutePath());
             txtCompleteMoviesPath.setText(file.getAbsolutePath());
             txtLibraryStats.setText("Please process the file when ready");
 
@@ -669,7 +670,7 @@ public class MainWindow extends javax.swing.JFrame {
         ParseCompleteMovies.setProgressWindow(this);
 
         // Load the complete movies
-        ParseCompleteMovies.parse(YamjTraktApp.getAppLibrary(), YamjTraktApp.getAppLibrary().getPathCompleteMovie());
+        ParseCompleteMovies.parse(YamjTraktApp.getLibrary(), YamjTraktApp.getLibrary().getPathCompleteMovie());
 
         YamjTraktApp.setCompleteMoviesProcessed(Boolean.TRUE);
         updateButtons();
@@ -713,23 +714,22 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         lblProgressTitle.setText("Adding videos to Trakt.tv");
         fraProgress.setVisible(Boolean.TRUE);
-//        TraktTools.setProgressWindow(this);
 
         btnProgressOK.setEnabled(Boolean.FALSE);
-        dlgVideo.setVisible(Boolean.TRUE);
+//        dlgVideo.setVisible(Boolean.TRUE);
 
         (new Thread() {
 
             @Override
             public void run() {
                 progressClearText();
-                int totalToProcess = YamjTraktApp.getAppLibrary().getNumberMovies() + YamjTraktApp.getAppLibrary().getNumberTV();
+                int totalToProcess = YamjTraktApp.getLibrary().getNumberMovies() + YamjTraktApp.getLibrary().getNumberTV();
                 progressBarLimits(1, totalToProcess);
 
                 progressAddText("Processing Videos on Trakt.tv");
-                progressAddText(YamjTraktApp.getAppLibrary().getStats());
+                progressAddText(YamjTraktApp.getLibrary().getStats());
 
-                Map<String, Video> libVids = YamjTraktApp.getAppLibrary().getVideos();
+                Map<String, Video> libVids = YamjTraktApp.getLibrary().getVideos();
 
                 int progressCount = 1;
                 StringBuilder output;
@@ -784,7 +784,7 @@ public class MainWindow extends javax.swing.JFrame {
                 progressAddText("Done!");
                 progressAddText("");
                 btnProgressOK.setEnabled(Boolean.TRUE);
-                dlgVideo.setVisible(Boolean.FALSE);
+//                dlgVideo.setVisible(Boolean.FALSE);
 
             }
         }).start();
@@ -793,6 +793,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnProgressOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgressOKActionPerformed
+        updateButtons();
         fraProgress.setVisible(Boolean.FALSE);
         Thread.interrupted();
     }//GEN-LAST:event_btnProgressOKActionPerformed

@@ -5,7 +5,6 @@ import com.omertron.yamjtrakttv.model.Library;
 import com.omertron.yamjtrakttv.model.Video;
 import com.omertron.yamjtrakttv.view.MainWindow;
 import java.io.File;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

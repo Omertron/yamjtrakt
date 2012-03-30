@@ -36,9 +36,9 @@
             </includes>
         </fileSet>
 
-    	<!-- add configuration files -->
+    	<!-- add properties files -->
         <fileSet>
-            <directory>${basedir}/configuration</directory>
+            <directory>${basedir}/properties</directory>
              <outputDirectory>${project.artifactId}/properties</outputDirectory>
            <includes>
                 <include>**/*</include>

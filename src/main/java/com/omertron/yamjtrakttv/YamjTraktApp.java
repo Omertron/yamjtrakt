@@ -18,9 +18,10 @@ public class YamjTraktApp {
 
     private static final Logger logger = Logger.getLogger(YamjTraktApp.class);
     private static final String logFilename = YamjTraktApp.class.getSimpleName();
+    private static final String propertiesFilename = "properties/log4j.properties";
     private static final String FILE_CREDENTIALS = "Credentials.xml";
     private static Credentials credentials;
-    private static Library appLibrary = new Library();
+    private static Library completeMoviesLibrary = new Library();
     private static boolean completeMoviesLoaded = Boolean.FALSE;
     private static boolean completeMoviesProcessed = Boolean.FALSE;
 
@@ -28,7 +29,9 @@ public class YamjTraktApp {
         credentials = new Credentials();
         System.err.println("Log filename: " + logFilename);
         System.setProperty("file.name", logFilename);
-        PropertyConfigurator.configure("properties/log4j.properties");
+
+        // Load the properties file
+        PropertyConfigurator.configure(propertiesFilename);
 
         logger.info("YAMJ Trakt.tv App");
         logger.info("~~~~ ~~~~~~~~ ~~~");
@@ -40,42 +43,8 @@ public class YamjTraktApp {
         MainWindow.windowMain(args);
     }
 
-    public static boolean testScanTrakt() {
-        boolean response = TraktTools.initialise(credentials);
-        if (response) {
-            Map<String, Video> videos = appLibrary.getVideos();
-            for (String title : videos.keySet()) {
-                Video v = videos.get(title);
-                if (v.isMovie()) {
-                    logger.info("Processing movie: " + title + " (" + v.getId(Video.ID_IMDB) + ")");
-                    Movie movie = TraktTools.getMovieSummary(v);
-
-                    logger.info("Watched   : " + movie.watched);
-                    logger.info("Plays     : " + movie.plays);
-                    logger.info("Rating    : " + movie.rating);
-                    logger.info("Watchlist : " + movie.inWatchlist);
-                    logger.info("Collection: " + movie.inCollection);
-                } else {
-                    logger.info("Processing TV show: " + title + " (" + v.getId(Video.ID_TVDB) + ")");
-                    TvShow tvshow = TraktTools.getTvShowSummary(v);
-
-//                    logger.info("Watched   : " + tvshow.watched);
-//                    logger.info("Plays     : " + tvshow.plays);
-                    logger.info("Rating    : " + tvshow.rating);
-                    logger.info("Watchlist : " + tvshow.inWatchlist);
-//                    logger.info("Collection: " + tvshow.inCollection);
-
-
-                }
-            }
-        } else {
-            logger.error("ABORTING!!!");
-        }
-        return response;
-    }
-
-    public static Library getAppLibrary() {
-        return appLibrary;
+    public static Library getLibrary() {
+        return completeMoviesLibrary;
     }
 
     public static Credentials getCredentials() {

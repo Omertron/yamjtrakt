@@ -74,7 +74,7 @@ public class ProgressProcessor {
                             nVideo = nlVideos.item(loop);
                             if (nVideo.getNodeType() == Node.ELEMENT_NODE) {
                                 Element eVideo = (Element) nVideo;
-                                Video video = ParseCompleteMovies.parseVideo(eVideo);
+                                Video video = CompleteMoviesTools.parseVideo(eVideo);
                                 progressWindow.progressAddText("  #" + (loop + 1) + ") " + video.getType() + " - " + video.getTitle());
                                 cmLibrary.addVideo(video);
                             }

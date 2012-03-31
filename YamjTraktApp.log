@@ -1,118 +1,489 @@
-[YAMJTraktTv-YamjTraktApp-08:40:20] YAMJ Trakt.tv App
-[YAMJTraktTv-YamjTraktApp-08:40:20] ~~~~ ~~~~~~~~ ~~~
-[YAMJTraktTv-YamjTraktApp-08:40:20]      Version: null
-[YAMJTraktTv-YamjTraktApp-08:40:20]   Build date: null
-[YAMJTraktTv-YamjTraktApp-08:40:20] Java version: 1.7.0_03
-[YAMJTraktTv-YamjTraktApp-08:40:20] 
-[YAMJTraktTv-MainWindow-08:40:30] Setting MarkAllWatched to true
-[YAMJTraktTv-MainWindow-08:40:31] Setting MarkAllWatched to false
-[YAMJTraktTv-ProgressProcessor-08:40:33] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
-[YAMJTraktTv-MainWindow-08:40:33] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
-[YAMJTraktTv-ProgressProcessor-08:40:33] Found 30 videos to process
-[YAMJTraktTv-MainWindow-08:40:33] Found 30 videos to process
-[YAMJTraktTv-MainWindow-08:40:33]   #1) MOVIE - 28 Days Later
-[YAMJTraktTv-MainWindow-08:40:33]   #2) MOVIE - 3 10 To Yuma
-[YAMJTraktTv-MainWindow-08:40:33]   #3) MOVIE - 30 Days Of Night
-[YAMJTraktTv-MainWindow-08:40:33]   #4) TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:33]   #5) TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:33]   #6) TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:33]   #7) TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:33]   #8) TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:33]   #9) TVSHOW - A Gifted Man
-[YAMJTraktTv-MainWindow-08:40:33]   #10) TVSHOW - Alcatraz
-[YAMJTraktTv-MainWindow-08:40:33]   #11) TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:33]   #12) TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:33]   #13) TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:33]   #14) TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:33]   #15) TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:33]   #16) TVSHOW - Alphas
-[YAMJTraktTv-MainWindow-08:40:33]   #17) TVSHOW - Babylon 5
-[YAMJTraktTv-MainWindow-08:40:33]   #18) TVSHOW - BBC South Pacific
-[YAMJTraktTv-MainWindow-08:40:33]   #19) TVSHOW - Being Erica
-[YAMJTraktTv-MainWindow-08:40:33]   #20) TVSHOW - Being Erica
-[YAMJTraktTv-MainWindow-08:40:33]   #21) TVSHOW - Better Off Ted
-[YAMJTraktTv-MainWindow-08:40:33]   #22) TVSHOW - Better Off Ted
-[YAMJTraktTv-MainWindow-08:40:33]   #23) TVSHOW - Black Books
-[YAMJTraktTv-MainWindow-08:40:33]   #24) TVSHOW - Black Books
-[YAMJTraktTv-MainWindow-08:40:33]   #25) TVSHOW - Black Books
-[YAMJTraktTv-MainWindow-08:40:33]   #26) TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:40:33]   #27) TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:40:33]   #28) TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:40:33]   #29) TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:40:33]   #30) TVSHOW - BlackAdder
-[YAMJTraktTv-ProgressProcessor$1-08:40:33] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
-[YAMJTraktTv-MainWindow-08:40:33] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
-[YAMJTraktTv-ProgressProcessor$1-08:40:33] Library contains 3 movies and 11 TV shows with 385 episodes total.
-[YAMJTraktTv-MainWindow-08:40:33] Library contains 3 movies and 11 TV shows with 385 episodes total.
-[YAMJTraktTv-TraktTools-08:40:37] Authentication successful
-[YAMJTraktTv-TraktTools-08:40:38] Authentication successful
-[YAMJTraktTv-MainWindow-08:40:42] Processing Videos on Trakt.tv
-[YAMJTraktTv-MainWindow-08:40:42] Library contains 3 movies and 11 TV shows with 385 episodes total.
-[YAMJTraktTv-MainWindow-08:40:42] Done!
-[YAMJTraktTv-MainWindow-08:40:42] 
-[YAMJTraktTv-ProgressProcessor$2-08:40:42] Will use the date Sat Mar 31 08:40:42 BST 2012 for videos if required
-[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - BBC South Pacific
-[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW BBC South Pacific has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - Black Books
-[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW Black Books has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - Being Erica
-[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW Being Erica has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:40:42] Submitted 14 tasks to be processed on 4 threads.
-[YAMJTraktTv-MainWindow-08:40:42] Processing MOVIE - 3 10 To Yuma
-[YAMJTraktTv-MainWindow-08:40:42] Video MOVIE 3 10 To Yuma has not been watched. Skipping
-[YAMJTraktTv-TraktTools-08:40:43] Error getting information for TV show: BBC South Pacific - Error: show not found
-[YAMJTraktTv-TraktTools-08:40:43] BBC South Pacific was not found on trakt.tv
-[YAMJTraktTv-MainWindow-08:40:43] Adding TVSHOW BBC South Pacific to collection
-[YAMJTraktTv-TraktTools-08:40:43] BBC South Pacific was not found on trakt.tv
-[YAMJTraktTv-MainWindow-08:40:43] Finished TVSHOW - BBC South Pacific
-[YAMJTraktTv-MainWindow-08:40:43] Processing TVSHOW - A Gifted Man
-[YAMJTraktTv-MainWindow-08:40:43] Video TVSHOW A Gifted Man has not been watched. Skipping
-[YAMJTraktTv-TraktTools-08:40:44] Updated seen for 3 10 To Yuma
-[YAMJTraktTv-MainWindow-08:40:44] Adding MOVIE 3 10 To Yuma to collection
-[YAMJTraktTv-MainWindow-08:40:44] Finished MOVIE - 3 10 To Yuma
-[YAMJTraktTv-MainWindow-08:40:44] Processing TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:40:44] Video TVSHOW 24 has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:40:57] Adding TVSHOW A Gifted Man to collection
-[YAMJTraktTv-MainWindow-08:40:57] Finished TVSHOW - A Gifted Man
-[YAMJTraktTv-MainWindow-08:40:57] Processing TVSHOW - Better Off Ted
-[YAMJTraktTv-MainWindow-08:40:57] Video TVSHOW Better Off Ted has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:40:58] Adding TVSHOW Black Books to collection
-[YAMJTraktTv-MainWindow-08:40:59] Finished TVSHOW - Black Books
-[YAMJTraktTv-MainWindow-08:40:59] Processing TVSHOW - Ally McBeal
-[YAMJTraktTv-MainWindow-08:40:59] Video TVSHOW Ally McBeal has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:41:01] Adding TVSHOW Being Erica to collection
-[YAMJTraktTv-MainWindow-08:41:01] Finished TVSHOW - Being Erica
-[YAMJTraktTv-MainWindow-08:41:01] Processing TVSHOW - Alcatraz
-[YAMJTraktTv-MainWindow-08:41:01] Video TVSHOW Alcatraz has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:41:11] Adding TVSHOW Alcatraz to collection
-[YAMJTraktTv-MainWindow-08:41:11] Finished TVSHOW - Alcatraz
-[YAMJTraktTv-MainWindow-08:41:11] Processing MOVIE - 28 Days Later
-[YAMJTraktTv-MainWindow-08:41:11] Marking seen: MOVIE 28 Days Later
-[YAMJTraktTv-TraktTools-08:41:12] Updated seen for 28 Days Later
-[YAMJTraktTv-MainWindow-08:41:12] Adding MOVIE 28 Days Later to collection
-[YAMJTraktTv-MainWindow-08:41:12] Finished MOVIE - 28 Days Later
-[YAMJTraktTv-MainWindow-08:41:12] Processing TVSHOW - Alphas
-[YAMJTraktTv-MainWindow-08:41:12] Video TVSHOW Alphas has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:41:21] Adding TVSHOW Better Off Ted to collection
-[YAMJTraktTv-MainWindow-08:41:21] Finished TVSHOW - Better Off Ted
-[YAMJTraktTv-MainWindow-08:41:21] Processing MOVIE - 30 Days Of Night
-[YAMJTraktTv-MainWindow-08:41:21] Marking seen: MOVIE 30 Days Of Night
-[YAMJTraktTv-MainWindow-08:41:22] Adding TVSHOW Alphas to collection
-[YAMJTraktTv-TraktTools-08:41:22] Updated seen for 30 Days Of Night
-[YAMJTraktTv-MainWindow-08:41:22] Adding MOVIE 30 Days Of Night to collection
-[YAMJTraktTv-MainWindow-08:41:23] Finished TVSHOW - Alphas
-[YAMJTraktTv-MainWindow-08:41:23] Processing TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:41:23] Video TVSHOW BlackAdder has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:41:23] Finished MOVIE - 30 Days Of Night
-[YAMJTraktTv-MainWindow-08:41:23] Processing TVSHOW - Babylon 5
-[YAMJTraktTv-MainWindow-08:41:23] Video TVSHOW Babylon 5 has not been watched. Skipping
-[YAMJTraktTv-MainWindow-08:41:42] Adding TVSHOW Babylon 5 to collection
-[YAMJTraktTv-MainWindow-08:41:42] Finished TVSHOW - Babylon 5
-[YAMJTraktTv-MainWindow-08:41:44] Adding TVSHOW BlackAdder to collection
-[YAMJTraktTv-MainWindow-08:41:45] Finished TVSHOW - BlackAdder
-[YAMJTraktTv-MainWindow-08:42:41] Adding TVSHOW 24 to collection
-[YAMJTraktTv-MainWindow-08:42:41] Finished TVSHOW - 24
-[YAMJTraktTv-MainWindow-08:42:44] Adding TVSHOW Ally McBeal to collection
-[YAMJTraktTv-MainWindow-08:42:44] Finished TVSHOW - Ally McBeal
-[YAMJTraktTv-ProgressProcessor$2-08:42:44] Waiting for threads to finish...
-[YAMJTraktTv-ProgressProcessor$2-08:42:45] All threads have finished
+[YAMJTraktTv-YamjTraktApp-15:26:24] YAMJ Trakt.tv App
+[YAMJTraktTv-YamjTraktApp-15:26:24] ~~~~ ~~~~~~~~ ~~~
+[YAMJTraktTv-YamjTraktApp-15:26:24]      Version: null
+[YAMJTraktTv-YamjTraktApp-15:26:24]   Build date: null
+[YAMJTraktTv-YamjTraktApp-15:26:24] Java version: 1.7.0_03
+[YAMJTraktTv-YamjTraktApp-15:26:24] 
+[YAMJTraktTv-TraktTools-15:26:41] Authentication successful
+[YAMJTraktTv-TraktTools-15:26:43] Authentication successful
+[YAMJTraktTv-ProgressProcessor-15:26:45] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\tv\CompleteMovies.xml
+[YAMJTraktTv-MainWindow-15:26:45] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\tv\CompleteMovies.xml
+[YAMJTraktTv-ProgressProcessor-15:26:45] Found 473 videos to process
+[YAMJTraktTv-MainWindow-15:26:45] Found 473 videos to process
+[YAMJTraktTv-MainWindow-15:26:45]   #1) TVSHOW - 2 Broke Girls
+[YAMJTraktTv-MainWindow-15:26:45]   #2) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #3) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #4) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #5) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #6) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #7) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #8) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #9) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #10) TVSHOW - 24
+[YAMJTraktTv-MainWindow-15:26:45]   #11) TVSHOW - A Gifted Man
+[YAMJTraktTv-MainWindow-15:26:45]   #12) TVSHOW - Alcatraz
+[YAMJTraktTv-MainWindow-15:26:45]   #13) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-15:26:45]   #14) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-15:26:45]   #15) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-15:26:45]   #16) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-15:26:45]   #17) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-15:26:45]   #18) TVSHOW - Alphas
+[YAMJTraktTv-MainWindow-15:26:45]   #19) TVSHOW - American Horror Story
+[YAMJTraktTv-MainWindow-15:26:45]   #20) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #21) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #22) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #23) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #24) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #25) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-15:26:45]   #26) TVSHOW - BBC South Pacific
+[YAMJTraktTv-MainWindow-15:26:45]   #27) TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-15:26:45]   #28) TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-15:26:45]   #29) TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-15:26:45]   #30) TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-15:26:45]   #31) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-15:26:45]   #32) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-15:26:45]   #33) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-15:26:45]   #34) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-15:26:45]   #35) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-15:26:45]   #36) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-15:26:45]   #37) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-15:26:45]   #38) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-15:26:45]   #39) TVSHOW - Boardwalk Empire
+[YAMJTraktTv-MainWindow-15:26:45]   #40) TVSHOW - Boardwalk Empire
+[YAMJTraktTv-MainWindow-15:26:45]   #41) TVSHOW - Body of Proof
+[YAMJTraktTv-MainWindow-15:26:45]   #42) TVSHOW - Body of Proof
+[YAMJTraktTv-MainWindow-15:26:45]   #43) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #44) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #45) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #46) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #47) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #48) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #49) TVSHOW - Bones
+[YAMJTraktTv-MainWindow-15:26:45]   #50) TVSHOW - Boss
+[YAMJTraktTv-MainWindow-15:26:45]   #51) TVSHOW - Breaking In
+[YAMJTraktTv-MainWindow-15:26:45]   #52) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #53) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #54) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #55) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #56) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #57) TVSHOW - Burn Notice
+[YAMJTraktTv-MainWindow-15:26:45]   #58) TVSHOW - Californication
+[YAMJTraktTv-MainWindow-15:26:45]   #59) TVSHOW - Californication
+[YAMJTraktTv-MainWindow-15:26:45]   #60) TVSHOW - Californication
+[YAMJTraktTv-MainWindow-15:26:45]   #61) TVSHOW - Californication
+[YAMJTraktTv-MainWindow-15:26:45]   #62) TVSHOW - Californication
+[YAMJTraktTv-MainWindow-15:26:45]   #63) TVSHOW - Castle
+[YAMJTraktTv-MainWindow-15:26:45]   #64) TVSHOW - Castle
+[YAMJTraktTv-MainWindow-15:26:45]   #65) TVSHOW - Castle
+[YAMJTraktTv-MainWindow-15:26:45]   #66) TVSHOW - Castle
+[YAMJTraktTv-MainWindow-15:26:45]   #67) TVSHOW - Chaos
+[YAMJTraktTv-MainWindow-15:26:45]   #68) TVSHOW - Chase
+[YAMJTraktTv-MainWindow-15:26:45]   #69) TVSHOW - Chuck
+[YAMJTraktTv-MainWindow-15:26:45]   #70) TVSHOW - Chuck
+[YAMJTraktTv-MainWindow-15:26:45]   #71) TVSHOW - Chuck
+[YAMJTraktTv-MainWindow-15:26:45]   #72) TVSHOW - Chuck
+[YAMJTraktTv-MainWindow-15:26:45]   #73) TVSHOW - Chuck
+[YAMJTraktTv-MainWindow-15:26:45]   #74) TVSHOW - Community
+[YAMJTraktTv-MainWindow-15:26:45]   #75) TVSHOW - Community
+[YAMJTraktTv-MainWindow-15:26:45]   #76) TVSHOW - Community
+[YAMJTraktTv-MainWindow-15:26:45]   #77) TVSHOW - Cougar Town
+[YAMJTraktTv-MainWindow-15:26:45]   #78) TVSHOW - Cougar Town
+[YAMJTraktTv-MainWindow-15:26:45]   #79) TVSHOW - Cougar Town
+[YAMJTraktTv-MainWindow-15:26:45]   #80) TVSHOW - Coupling
+[YAMJTraktTv-MainWindow-15:26:45]   #81) TVSHOW - Coupling
+[YAMJTraktTv-MainWindow-15:26:45]   #82) TVSHOW - Coupling
+[YAMJTraktTv-MainWindow-15:26:45]   #83) TVSHOW - Coupling
+[YAMJTraktTv-MainWindow-15:26:45]   #84) TVSHOW - Covert Affairs
+[YAMJTraktTv-MainWindow-15:26:45]   #85) TVSHOW - Covert Affairs
+[YAMJTraktTv-MainWindow-15:26:45]   #86) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #87) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #88) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #89) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #90) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #91) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #92) TVSHOW - Criminal Minds
+[YAMJTraktTv-MainWindow-15:26:45]   #93) TVSHOW - Crusade
+[YAMJTraktTv-MainWindow-15:26:45]   #94) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #95) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #96) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #97) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #98) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #99) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #100) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #101) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #102) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #103) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #104) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #105) TVSHOW - CSI Crime Scene Investigation
+[YAMJTraktTv-MainWindow-15:26:45]   #106) TVSHOW - CSI Miami
+[YAMJTraktTv-MainWindow-15:26:45]   #107) TVSHOW - CSI Miami
+[YAMJTraktTv-MainWindow-15:26:45]   #108) TVSHOW - CSI Miami
+[YAMJTraktTv-MainWindow-15:26:45]   #109) TVSHOW - CSI Miami
+[YAMJTraktTv-MainWindow-15:26:45]   #110) TVSHOW - CSI Miami
+[YAMJTraktTv-MainWindow-15:26:45]   #111) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #112) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #113) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #114) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #115) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #116) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #117) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #118) TVSHOW - CSI NY
+[YAMJTraktTv-MainWindow-15:26:45]   #119) TVSHOW - Cupid
+[YAMJTraktTv-MainWindow-15:26:45]   #120) TVSHOW - Dark Blue
+[YAMJTraktTv-MainWindow-15:26:45]   #121) TVSHOW - Dark Blue
+[YAMJTraktTv-MainWindow-15:26:45]   #122) TVSHOW - Deadwood
+[YAMJTraktTv-MainWindow-15:26:45]   #123) TVSHOW - Deadwood
+[YAMJTraktTv-MainWindow-15:26:45]   #124) TVSHOW - Deadwood
+[YAMJTraktTv-MainWindow-15:26:45]   #125) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:45]   #126) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:45]   #127) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:45]   #128) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:45]   #129) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:45]   #130) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:46]   #131) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:46]   #132) TVSHOW - Desperate Housewives
+[YAMJTraktTv-MainWindow-15:26:46]   #133) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #134) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #135) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #136) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #137) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #138) TVSHOW - Dexter
+[YAMJTraktTv-MainWindow-15:26:46]   #139) TVSHOW - Dirk Gently
+[YAMJTraktTv-MainWindow-15:26:46]   #140) TVSHOW - Dirty Sexy Money
+[YAMJTraktTv-MainWindow-15:26:46]   #141) TVSHOW - Dirty Sexy Money
+[YAMJTraktTv-MainWindow-15:26:46]   #142) TVSHOW - Downton Abbey
+[YAMJTraktTv-MainWindow-15:26:46]   #143) TVSHOW - Downton Abbey
+[YAMJTraktTv-MainWindow-15:26:46]   #144) TVSHOW - Downton Abbey
+[YAMJTraktTv-MainWindow-15:26:46]   #145) TVSHOW - Episodes
+[YAMJTraktTv-MainWindow-15:26:46]   #146) TVSHOW - Eureka
+[YAMJTraktTv-MainWindow-15:26:46]   #147) TVSHOW - Eureka
+[YAMJTraktTv-MainWindow-15:26:46]   #148) TVSHOW - Eureka
+[YAMJTraktTv-MainWindow-15:26:46]   #149) TVSHOW - Eureka
+[YAMJTraktTv-MainWindow-15:26:46]   #150) TVSHOW - Eureka
+[YAMJTraktTv-MainWindow-15:26:46]   #151) TVSHOW - Fairly Legal
+[YAMJTraktTv-MainWindow-15:26:46]   #152) TVSHOW - Falling Skies
+[YAMJTraktTv-MainWindow-15:26:46]   #153) TVSHOW - Father Ted
+[YAMJTraktTv-MainWindow-15:26:46]   #154) TVSHOW - Father Ted
+[YAMJTraktTv-MainWindow-15:26:46]   #155) TVSHOW - Father Ted
+[YAMJTraktTv-MainWindow-15:26:46]   #156) TVSHOW - Firefly
+[YAMJTraktTv-MainWindow-15:26:46]   #157) TVSHOW - Franklin & Bash
+[YAMJTraktTv-MainWindow-15:26:46]   #158) TVSHOW - Friends With Benefits
+[YAMJTraktTv-MainWindow-15:26:46]   #159) TVSHOW - Fringe
+[YAMJTraktTv-MainWindow-15:26:46]   #160) TVSHOW - Fringe
+[YAMJTraktTv-MainWindow-15:26:46]   #161) TVSHOW - Fringe
+[YAMJTraktTv-MainWindow-15:26:46]   #162) TVSHOW - Fringe
+[YAMJTraktTv-MainWindow-15:26:46]   #163) TVSHOW - Frozen Planet
+[YAMJTraktTv-MainWindow-15:26:46]   #164) TVSHOW - Frozen Planet
+[YAMJTraktTv-MainWindow-15:26:46]   #165) TVSHOW - Game of Thrones
+[YAMJTraktTv-MainWindow-15:26:46]   #166) TVSHOW - Glee
+[YAMJTraktTv-MainWindow-15:26:46]   #167) TVSHOW - Glee
+[YAMJTraktTv-MainWindow-15:26:46]   #168) TVSHOW - Glee
+[YAMJTraktTv-MainWindow-15:26:46]   #169) TVSHOW - Grey's Anatomy
+[YAMJTraktTv-MainWindow-15:26:46]   #170) TVSHOW - Grimm
+[YAMJTraktTv-MainWindow-15:26:46]   #171) TVSHOW - Happy Endings
+[YAMJTraktTv-MainWindow-15:26:46]   #172) TVSHOW - Happy Endings
+[YAMJTraktTv-MainWindow-15:26:46]   #173) TVSHOW - Haven
+[YAMJTraktTv-MainWindow-15:26:46]   #174) TVSHOW - Haven
+[YAMJTraktTv-MainWindow-15:26:46]   #175) TVSHOW - Hawaii Five-0
+[YAMJTraktTv-MainWindow-15:26:46]   #176) TVSHOW - Hawaii Five-0
+[YAMJTraktTv-MainWindow-15:26:46]   #177) TVSHOW - Hell On Wheels
+[YAMJTraktTv-MainWindow-15:26:46]   #178) TVSHOW - Heroes
+[YAMJTraktTv-MainWindow-15:26:46]   #179) TVSHOW - Heroes
+[YAMJTraktTv-MainWindow-15:26:46]   #180) TVSHOW - Heroes
+[YAMJTraktTv-MainWindow-15:26:46]   #181) TVSHOW - Heroes
+[YAMJTraktTv-MainWindow-15:26:46]   #182) TVSHOW - Homeland
+[YAMJTraktTv-MainWindow-15:26:46]   #183) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #184) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #185) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #186) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #187) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #188) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #189) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #190) TVSHOW - House
+[YAMJTraktTv-MainWindow-15:26:46]   #191) TVSHOW - House of Lies
+[YAMJTraktTv-MainWindow-15:26:46]   #192) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #193) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #194) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #195) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #196) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #197) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #198) TVSHOW - How I Met Your Mother
+[YAMJTraktTv-MainWindow-15:26:46]   #199) TVSHOW - How to Make It in America
+[YAMJTraktTv-MainWindow-15:26:46]   #200) TVSHOW - How to Make It in America
+[YAMJTraktTv-MainWindow-15:26:46]   #201) TVSHOW - Human Target
+[YAMJTraktTv-MainWindow-15:26:46]   #202) TVSHOW - Human Target
+[YAMJTraktTv-MainWindow-15:26:46]   #203) TVSHOW - Hung
+[YAMJTraktTv-MainWindow-15:26:46]   #204) TVSHOW - Hung
+[YAMJTraktTv-MainWindow-15:26:46]   #205) TVSHOW - Hung
+[YAMJTraktTv-MainWindow-15:26:46]   #206) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #207) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #208) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #209) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #210) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #211) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #212) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #213) TVSHOW - Hustle
+[YAMJTraktTv-MainWindow-15:26:46]   #214) TVSHOW - In Plain Sight
+[YAMJTraktTv-MainWindow-15:26:46]   #215) TVSHOW - In Plain Sight
+[YAMJTraktTv-MainWindow-15:26:46]   #216) TVSHOW - In Plain Sight
+[YAMJTraktTv-MainWindow-15:26:46]   #217) TVSHOW - In Plain Sight
+[YAMJTraktTv-MainWindow-15:26:46]   #218) TVSHOW - Injustice
+[YAMJTraktTv-MainWindow-15:26:46]   #219) TVSHOW - InSecurity
+[YAMJTraktTv-MainWindow-15:26:46]   #220) TVSHOW - InSecurity
+[YAMJTraktTv-MainWindow-15:26:46]   #221) TVSHOW - Inside Men
+[YAMJTraktTv-MainWindow-15:26:46]   #222) TVSHOW - Jeremiah
+[YAMJTraktTv-MainWindow-15:26:46]   #223) TVSHOW - Jeremiah
+[YAMJTraktTv-MainWindow-15:26:46]   #224) TVSHOW - Jericho
+[YAMJTraktTv-MainWindow-15:26:46]   #225) TVSHOW - Jericho
+[YAMJTraktTv-MainWindow-15:26:46]   #226) TVSHOW - Journeyman
+[YAMJTraktTv-MainWindow-15:26:46]   #227) TVSHOW - Justified
+[YAMJTraktTv-MainWindow-15:26:46]   #228) TVSHOW - Justified
+[YAMJTraktTv-MainWindow-15:26:46]   #229) TVSHOW - Justified
+[YAMJTraktTv-MainWindow-15:26:46]   #230) TVSHOW - Knight Rider
+[YAMJTraktTv-MainWindow-15:26:46]   #231) TVSHOW - Knight Rider
+[YAMJTraktTv-MainWindow-15:26:46]   #232) TVSHOW - Kröd Mändoon and the Flaming Sword of Fire
+[YAMJTraktTv-MainWindow-15:26:46]   #233) TVSHOW - Legend of the Seeker
+[YAMJTraktTv-MainWindow-15:26:46]   #234) TVSHOW - Legend of the Seeker
+[YAMJTraktTv-MainWindow-15:26:46]   #235) TVSHOW - Leverage
+[YAMJTraktTv-MainWindow-15:26:46]   #236) TVSHOW - Leverage
+[YAMJTraktTv-MainWindow-15:26:46]   #237) TVSHOW - Leverage
+[YAMJTraktTv-MainWindow-15:26:46]   #238) TVSHOW - Leverage
+[YAMJTraktTv-MainWindow-15:26:46]   #239) TVSHOW - Lie to Me
+[YAMJTraktTv-MainWindow-15:26:46]   #240) TVSHOW - Lie to Me
+[YAMJTraktTv-MainWindow-15:26:46]   #241) TVSHOW - Lie to Me
+[YAMJTraktTv-MainWindow-15:26:46]   #242) TVSHOW - Life
+[YAMJTraktTv-MainWindow-15:26:46]   #243) TVSHOW - Life
+[YAMJTraktTv-MainWindow-15:26:46]   #244) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #245) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #246) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #247) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #248) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #249) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #250) TVSHOW - Lost
+[YAMJTraktTv-MainWindow-15:26:46]   #251) TVSHOW - Luck
+[YAMJTraktTv-MainWindow-15:26:46]   #252) TVSHOW - Luther
+[YAMJTraktTv-MainWindow-15:26:46]   #253) TVSHOW - Luther
+[YAMJTraktTv-MainWindow-15:26:46]   #254) TVSHOW - Mad Dogs
+[YAMJTraktTv-MainWindow-15:26:46]   #255) TVSHOW - Mad Dogs
+[YAMJTraktTv-MainWindow-15:26:46]   #256) TVSHOW - Mad Men
+[YAMJTraktTv-MainWindow-15:26:46]   #257) TVSHOW - Mad Men
+[YAMJTraktTv-MainWindow-15:26:46]   #258) TVSHOW - Mad Men
+[YAMJTraktTv-MainWindow-15:26:46]   #259) TVSHOW - Mad Men
+[YAMJTraktTv-MainWindow-15:26:46]   #260) TVSHOW - Memphis Beat
+[YAMJTraktTv-MainWindow-15:26:46]   #261) TVSHOW - Memphis Beat
+[YAMJTraktTv-MainWindow-15:26:46]   #262) TVSHOW - Mike & Molly
+[YAMJTraktTv-MainWindow-15:26:46]   #263) TVSHOW - Mike & Molly
+[YAMJTraktTv-MainWindow-15:26:46]   #264) TVSHOW - Mistresses
+[YAMJTraktTv-MainWindow-15:26:46]   #265) TVSHOW - Mistresses
+[YAMJTraktTv-MainWindow-15:26:46]   #266) TVSHOW - Mistresses
+[YAMJTraktTv-MainWindow-15:26:46]   #267) TVSHOW - Modern Family
+[YAMJTraktTv-MainWindow-15:26:46]   #268) TVSHOW - Modern Family
+[YAMJTraktTv-MainWindow-15:26:46]   #269) TVSHOW - Modern Family
+[YAMJTraktTv-MainWindow-15:26:46]   #270) TVSHOW - Monty Python's Flying Circus
+[YAMJTraktTv-MainWindow-15:26:46]   #271) TVSHOW - Monty Python's Flying Circus
+[YAMJTraktTv-MainWindow-15:26:46]   #272) TVSHOW - Monty Python's Flying Circus
+[YAMJTraktTv-MainWindow-15:26:46]   #273) TVSHOW - Monty Python's Flying Circus
+[YAMJTraktTv-MainWindow-15:26:46]   #274) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #275) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #276) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #277) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #278) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #279) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #280) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #281) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #282) TVSHOW - NCIS
+[YAMJTraktTv-MainWindow-15:26:46]   #283) TVSHOW - NCIS Los Angeles
+[YAMJTraktTv-MainWindow-15:26:46]   #284) TVSHOW - NCIS Los Angeles
+[YAMJTraktTv-MainWindow-15:26:46]   #285) TVSHOW - NCIS Los Angeles
+[YAMJTraktTv-MainWindow-15:26:46]   #286) TVSHOW - New Girl
+[YAMJTraktTv-MainWindow-15:26:46]   #287) TVSHOW - Nikita
+[YAMJTraktTv-MainWindow-15:26:46]   #288) TVSHOW - Nikita
+[YAMJTraktTv-MainWindow-15:26:46]   #289) TVSHOW - No Ordinary Family
+[YAMJTraktTv-MainWindow-15:26:46]   #290) TVSHOW - Once Upon a Time
+[YAMJTraktTv-MainWindow-15:26:46]   #291) TVSHOW - Outsourced
+[YAMJTraktTv-MainWindow-15:26:46]   #292) TVSHOW - Pan Am
+[YAMJTraktTv-MainWindow-15:26:46]   #293) TVSHOW - Perfect Couples
+[YAMJTraktTv-MainWindow-15:26:46]   #294) TVSHOW - Person of Interest
+[YAMJTraktTv-MainWindow-15:26:46]   #295) TVSHOW - Pixar Shorts
+[YAMJTraktTv-MainWindow-15:26:46]   #296) TVSHOW - Planet Earth
+[YAMJTraktTv-MainWindow-15:26:46]   #297) TVSHOW - Private Practice
+[YAMJTraktTv-MainWindow-15:26:46]   #298) TVSHOW - Private Practice
+[YAMJTraktTv-MainWindow-15:26:46]   #299) TVSHOW - Private Practice
+[YAMJTraktTv-MainWindow-15:26:46]   #300) TVSHOW - Private Practice
+[YAMJTraktTv-MainWindow-15:26:46]   #301) TVSHOW - Private Practice
+[YAMJTraktTv-MainWindow-15:26:46]   #302) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #303) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #304) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #305) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #306) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #307) TVSHOW - Psych
+[YAMJTraktTv-MainWindow-15:26:46]   #308) TVSHOW - Pushing Daisies
+[YAMJTraktTv-MainWindow-15:26:46]   #309) TVSHOW - Pushing Daisies
+[YAMJTraktTv-MainWindow-15:26:46]   #310) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #311) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #312) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #313) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #314) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #315) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #316) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #317) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #318) TVSHOW - QI
+[YAMJTraktTv-MainWindow-15:26:46]   #319) TVSHOW - Quantum Leap
+[YAMJTraktTv-MainWindow-15:26:46]   #320) TVSHOW - Quantum Leap
+[YAMJTraktTv-MainWindow-15:26:46]   #321) TVSHOW - Quantum Leap
+[YAMJTraktTv-MainWindow-15:26:46]   #322) TVSHOW - Quantum Leap
+[YAMJTraktTv-MainWindow-15:26:46]   #323) TVSHOW - Quantum Leap
+[YAMJTraktTv-MainWindow-15:26:46]   #324) TVSHOW - Reaper
+[YAMJTraktTv-MainWindow-15:26:46]   #325) TVSHOW - Reaper
+[YAMJTraktTv-MainWindow-15:26:46]   #326) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #327) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #328) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #329) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #330) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #331) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #332) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #333) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #334) TVSHOW - Red Dwarf
+[YAMJTraktTv-MainWindow-15:26:46]   #335) TVSHOW - Revenge
+[YAMJTraktTv-MainWindow-15:26:46]   #336) TVSHOW - Rizzoli & Isles
+[YAMJTraktTv-MainWindow-15:26:46]   #337) TVSHOW - Rizzoli & Isles
+[YAMJTraktTv-MainWindow-15:26:46]   #338) TVSHOW - Rome
+[YAMJTraktTv-MainWindow-15:26:46]   #339) TVSHOW - Rome
+[YAMJTraktTv-MainWindow-15:26:46]   #340) TVSHOW - Royal Pains
+[YAMJTraktTv-MainWindow-15:26:46]   #341) TVSHOW - Royal Pains
+[YAMJTraktTv-MainWindow-15:26:46]   #342) TVSHOW - Royal Pains
+[YAMJTraktTv-MainWindow-15:26:46]   #343) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #344) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #345) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #346) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #347) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #348) TVSHOW - Rules of Engagement
+[YAMJTraktTv-MainWindow-15:26:46]   #349) TVSHOW - Sanctuary
+[YAMJTraktTv-MainWindow-15:26:46]   #350) TVSHOW - Sanctuary
+[YAMJTraktTv-MainWindow-15:26:46]   #351) TVSHOW - Sanctuary
+[YAMJTraktTv-MainWindow-15:26:46]   #352) TVSHOW - Sanctuary
+[YAMJTraktTv-MainWindow-15:26:46]   #353) TVSHOW - Sanctuary
+[YAMJTraktTv-MainWindow-15:26:46]   #354) TVSHOW - Sherlock
+[YAMJTraktTv-MainWindow-15:26:46]   #355) TVSHOW - Sherlock
+[YAMJTraktTv-MainWindow-15:26:46]   #356) TVSHOW - Six Feet Under
+[YAMJTraktTv-MainWindow-15:26:46]   #357) TVSHOW - Six Feet Under
+[YAMJTraktTv-MainWindow-15:26:46]   #358) TVSHOW - Six Feet Under
+[YAMJTraktTv-MainWindow-15:26:46]   #359) TVSHOW - Six Feet Under
+[YAMJTraktTv-MainWindow-15:26:46]   #360) TVSHOW - Six Feet Under
+[YAMJTraktTv-MainWindow-15:26:46]   #361) TVSHOW - Sledge Hammer!
+[YAMJTraktTv-MainWindow-15:26:46]   #362) TVSHOW - Sledge Hammer!
+[YAMJTraktTv-MainWindow-15:26:46]   #363) TVSHOW - Sledge Hammer!
+[YAMJTraktTv-MainWindow-15:26:46]   #364) TVSHOW - Smash
+[YAMJTraktTv-MainWindow-15:26:46]   #365) TVSHOW - Spartacus
+[YAMJTraktTv-MainWindow-15:26:46]   #366) TVSHOW - Spartacus Blood and Sand
+[YAMJTraktTv-MainWindow-15:26:46]   #367) TVSHOW - Spartacus Gods of the Arena
+[YAMJTraktTv-MainWindow-15:26:46]   #368) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #369) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #370) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #371) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #372) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #373) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #374) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #375) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #376) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #377) TVSHOW - Spooks
+[YAMJTraktTv-MainWindow-15:26:46]   #378) TVSHOW - Star Trek Enterprise
+[YAMJTraktTv-MainWindow-15:26:46]   #379) TVSHOW - Star Trek Enterprise
+[YAMJTraktTv-MainWindow-15:26:46]   #380) TVSHOW - Star Trek Enterprise
+[YAMJTraktTv-MainWindow-15:26:46]   #381) TVSHOW - Star Trek Enterprise
+[YAMJTraktTv-MainWindow-15:26:46]   #382) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #383) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #384) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #385) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #386) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #387) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #388) TVSHOW - Star Trek Voyager
+[YAMJTraktTv-MainWindow-15:26:46]   #389) TVSHOW - Star Wars - The Clone Wars
+[YAMJTraktTv-MainWindow-15:26:46]   #390) TVSHOW - Star Wars - The Clone Wars
+[YAMJTraktTv-MainWindow-15:26:46]   #391) TVSHOW - Star Wars The Clone Wars
+[YAMJTraktTv-MainWindow-15:26:46]   #392) TVSHOW - Star Wars The Clone Wars
+[YAMJTraktTv-MainWindow-15:26:46]   #393) TVSHOW - Star Wars The Clone Wars
+[YAMJTraktTv-MainWindow-15:26:46]   #394) TVSHOW - Starhyke
+[YAMJTraktTv-MainWindow-15:26:46]   #395) TVSHOW - Suburgatory
+[YAMJTraktTv-MainWindow-15:26:46]   #396) TVSHOW - Suits
+[YAMJTraktTv-MainWindow-15:26:46]   #397) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #398) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #399) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #400) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #401) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #402) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #403) TVSHOW - Supernatural
+[YAMJTraktTv-MainWindow-15:26:46]   #404) TVSHOW - Terminator The Sarah Connor Chronicles
+[YAMJTraktTv-MainWindow-15:26:46]   #405) TVSHOW - Terminator The Sarah Connor Chronicles
+[YAMJTraktTv-MainWindow-15:26:46]   #406) TVSHOW - Terra Nova
+[YAMJTraktTv-MainWindow-15:26:46]   #407) TVSHOW - Terra Nova
+[YAMJTraktTv-MainWindow-15:26:46]   #408) TVSHOW - The Big Bang Theory
+[YAMJTraktTv-MainWindow-15:26:46]   #409) TVSHOW - The Big Bang Theory
+[YAMJTraktTv-MainWindow-15:26:46]   #410) TVSHOW - The Big Bang Theory
+[YAMJTraktTv-MainWindow-15:26:46]   #411) TVSHOW - The Big Bang Theory
+[YAMJTraktTv-MainWindow-15:26:46]   #412) TVSHOW - The Big Bang Theory
+[YAMJTraktTv-MainWindow-15:26:46]   #413) TVSHOW - The Cape
+[YAMJTraktTv-MainWindow-15:26:46]   #414) TVSHOW - The Defenders
+[YAMJTraktTv-MainWindow-15:26:46]   #415) TVSHOW - The Exes
+[YAMJTraktTv-MainWindow-15:26:46]   #416) TVSHOW - The Finder
+[YAMJTraktTv-MainWindow-15:26:46]   #417) TVSHOW - The Firm
+[YAMJTraktTv-MainWindow-15:26:46]   #418) TVSHOW - The Glades
+[YAMJTraktTv-MainWindow-15:26:46]   #419) TVSHOW - The Glades
+[YAMJTraktTv-MainWindow-15:26:46]   #420) TVSHOW - The Good Guys
+[YAMJTraktTv-MainWindow-15:26:46]   #421) TVSHOW - The Good Wife
+[YAMJTraktTv-MainWindow-15:26:46]   #422) TVSHOW - The Good Wife
+[YAMJTraktTv-MainWindow-15:26:46]   #423) TVSHOW - The Good Wife
+[YAMJTraktTv-MainWindow-15:26:46]   #424) TVSHOW - The Guild
+[YAMJTraktTv-MainWindow-15:26:46]   #425) TVSHOW - The Guild
+[YAMJTraktTv-MainWindow-15:26:46]   #426) TVSHOW - The Guild
+[YAMJTraktTv-MainWindow-15:26:46]   #427) TVSHOW - The Guild
+[YAMJTraktTv-MainWindow-15:26:46]   #428) TVSHOW - The IT Crowd
+[YAMJTraktTv-MainWindow-15:26:46]   #429) TVSHOW - The IT Crowd
+[YAMJTraktTv-MainWindow-15:26:46]   #430) TVSHOW - The IT Crowd
+[YAMJTraktTv-MainWindow-15:26:46]   #431) TVSHOW - The IT Crowd
+[YAMJTraktTv-MainWindow-15:26:46]   #432) TVSHOW - The Mentalist
+[YAMJTraktTv-MainWindow-15:26:46]   #433) TVSHOW - The Mentalist
+[YAMJTraktTv-MainWindow-15:26:46]   #434) TVSHOW - The Mentalist
+[YAMJTraktTv-MainWindow-15:26:46]   #435) TVSHOW - The Mentalist
+[YAMJTraktTv-MainWindow-15:26:46]   #436) TVSHOW - The Middle
+[YAMJTraktTv-MainWindow-15:26:46]   #437) TVSHOW - The Middle
+[YAMJTraktTv-MainWindow-15:26:46]   #438) TVSHOW - The Middle
+[YAMJTraktTv-MainWindow-15:26:46]   #439) TVSHOW - The Restoration Man
+[YAMJTraktTv-MainWindow-15:26:46]   #440) TVSHOW - The Restoration Man
+[YAMJTraktTv-MainWindow-15:26:46]   #441) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #442) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #443) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #444) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #445) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #446) TVSHOW - The Sopranos
+[YAMJTraktTv-MainWindow-15:26:46]   #447) TVSHOW - The Walking Dead
+[YAMJTraktTv-MainWindow-15:26:46]   #448) TVSHOW - The Walking Dead
+[YAMJTraktTv-MainWindow-15:26:46]   #449) TVSHOW - Touch
+[YAMJTraktTv-MainWindow-15:26:46]   #450) TVSHOW - Treasure Island
+[YAMJTraktTv-MainWindow-15:26:46]   #451) TVSHOW - True Blood
+[YAMJTraktTv-MainWindow-15:26:46]   #452) TVSHOW - True Blood
+[YAMJTraktTv-MainWindow-15:26:46]   #453) TVSHOW - True Blood
+[YAMJTraktTv-MainWindow-15:26:46]   #454) TVSHOW - True Blood
+[YAMJTraktTv-MainWindow-15:26:46]   #455) TVSHOW - Unforgettable
+[YAMJTraktTv-MainWindow-15:26:46]   #456) TVSHOW - Up All Night
+[YAMJTraktTv-MainWindow-15:26:46]   #457) TVSHOW - v
+[YAMJTraktTv-MainWindow-15:26:46]   #458) TVSHOW - V
+[YAMJTraktTv-MainWindow-15:26:46]   #459) TVSHOW - V
+[YAMJTraktTv-MainWindow-15:26:46]   #460) TVSHOW - Veronica Mars
+[YAMJTraktTv-MainWindow-15:26:46]   #461) TVSHOW - Veronica Mars
+[YAMJTraktTv-MainWindow-15:26:46]   #462) TVSHOW - Veronica Mars
+[YAMJTraktTv-MainWindow-15:26:46]   #463) TVSHOW - Warehouse 13
+[YAMJTraktTv-MainWindow-15:26:46]   #464) TVSHOW - Warehouse 13
+[YAMJTraktTv-MainWindow-15:26:46]   #465) TVSHOW - Warehouse 13
+[YAMJTraktTv-MainWindow-15:26:46]   #466) TVSHOW - White Collar
+[YAMJTraktTv-MainWindow-15:26:46]   #467) TVSHOW - White Collar
+[YAMJTraktTv-MainWindow-15:26:46]   #468) TVSHOW - White Collar
+[YAMJTraktTv-MainWindow-15:26:46]   #469) TVSHOW - Yes Minister
+[YAMJTraktTv-MainWindow-15:26:46]   #470) TVSHOW - Yes Minister
+[YAMJTraktTv-MainWindow-15:26:46]   #471) TVSHOW - Yes Minister
+[YAMJTraktTv-MainWindow-15:26:46]   #472) TVSHOW - Yes, Prime Minister
+[YAMJTraktTv-MainWindow-15:26:46]   #473) TVSHOW - Yes, Prime Minister
+[YAMJTraktTv-ProgressProcessor$1-15:26:46] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\tv\CompleteMovies.xml
+[YAMJTraktTv-MainWindow-15:26:46] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\tv\CompleteMovies.xml
+[YAMJTraktTv-ProgressProcessor$1-15:26:46] Library contains 0 movies and 163 TV shows with 7,020 episodes total.
+[YAMJTraktTv-MainWindow-15:26:46] Library contains 0 movies and 163 TV shows with 7,020 episodes total.

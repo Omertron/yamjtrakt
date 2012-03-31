@@ -138,63 +138,46 @@ public class TraktTools {
         StringBuilder message = new StringBuilder();
         if (video.isWatched()) {
             message.append("Marking seen: ").append(video.getType()).append(" ").append(video.getTitle());
+        } else if (video.hasWatchedEpsidoes()) {
+            message.append("TV Show ").append(video.getTitle()).append(" has 1 or more watched episodes.");
         } else if (forceWatched) {
             message.append("Forcing seen: ").append(video.getType()).append(" ").append(video.getTitle());
         } else {
             message.append("Video ").append(video.getType()).append(" ").append(video.getTitle()).append(" has not been watched. Skipping");
+            ProgressProcessor.progressMessage(message.toString());
+            return;
         }
+
         ProgressProcessor.progressMessage(message.toString());
 
         if (video.isMovie()) {
-            addMovieSeen(video);
+            addMovieSeen(video, forceWatched);
         } else {
-            addShowSeen(video);
+            addShowSeen(video, forceWatched);
         }
     }
 
-    private static void addMovieSeen(Video video) {
-        if (!video.isSearchOnTrakt()) {
-            getMovieSummary(video);
-        }
-
-        if (video.isFoundOnTrakt()) {
-            SeenBuilder sb = manager.movieService().seen();
-            if (StringUtils.isNotBlank(video.getId(Video.ID_THEMOVIEDB))) {
-                int tmdbId = Integer.parseInt(video.getId(Video.ID_THEMOVIEDB));
-                sb.movie(tmdbId, DEFAULT_PLAYS, video.getWatchedDate());
-            } else if (StringUtils.isNotBlank(video.getId(Video.ID_IMDB))) {
-                sb.movie(video.getId(Video.ID_IMDB), DEFAULT_PLAYS, video.getWatchedDate());
-            } else {
-                logger.debug("No id found for " + video.getTitle());
-                return;
-            }
-            sb.fire();
-            logger.info("Updated seen for " + video.getTitle());
+    private static void addMovieSeen(Video video, boolean forceWatched) {
+        SeenBuilder sb = manager.movieService().seen();
+        if (StringUtils.isNotBlank(video.getId(Video.ID_THEMOVIEDB))) {
+            int tmdbId = Integer.parseInt(video.getId(Video.ID_THEMOVIEDB));
+            sb.movie(tmdbId, DEFAULT_PLAYS, video.getWatchedDate());
+        } else if (StringUtils.isNotBlank(video.getId(Video.ID_IMDB))) {
+            sb.movie(video.getId(Video.ID_IMDB), DEFAULT_PLAYS, video.getWatchedDate());
         } else {
-            logger.debug(video.getTitle() + " was not found on trakt.tv");
+            logger.debug("No id found for " + video.getTitle());
+            return;
         }
+        sb.fire();
+        logger.info("Updated seen for " + video.getTitle());
     }
 
-    private static void addShowSeen(Video video) {
-        if (!video.isSearchOnTrakt()) {
-            getTvShowSummary(video);
-        }
-
-        if (video.isFoundOnTrakt()) {
-            EpisodeSeenBuilder esb = manager.showService().episodeSeen(Integer.parseInt(video.getId(Video.ID_TVDB)));
-            for (Episode ep : video.getEpisodes()) {
-                if (!ep.isSearchOnTrakt()) {
-                    getEpisodeSummary(video, ep);
-                }
-
-                if (ep.isFoundOnTrakt()) {
-                    esb.episode(ep.getSeason(), ep.getEpisode()).fire();
-                } else {
-                    logger.debug(video.getTitle() + " Season " + ep.getSeason() + " Episode " + ep.getEpisode() + " was not found on trakt");
-                }
+    private static void addShowSeen(Video video, boolean forceWatched) {
+        EpisodeSeenBuilder esb = manager.showService().episodeSeen(Integer.parseInt(video.getId(Video.ID_TVDB)));
+        for (Episode ep : video.getEpisodes()) {
+            if (ep.isWatched() || forceWatched) {
+                esb.episode(ep.getSeason(), ep.getEpisode()).fire();
             }
-        } else {
-            logger.debug(video.getTitle() + " was not found on trakt.tv");
         }
     }
 
@@ -202,7 +185,7 @@ public class TraktTools {
         StringBuilder message = new StringBuilder();
         message.append("Adding ").append(video.getType()).append(" ").append(video.getTitle()).append(" to collection");
         ProgressProcessor.progressMessage(message.toString());
-        
+
         if (video.isMovie()) {
             addMovieToCollection(video);
         } else {

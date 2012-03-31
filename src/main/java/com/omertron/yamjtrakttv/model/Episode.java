@@ -1,9 +1,13 @@
 package com.omertron.yamjtrakttv.model;
 
+import java.util.Date;
+
 public class Episode {
 
     private int season;
     private int episode;
+    private boolean watched;
+    private Date watchedDate;
     private SummaryInfo summaryInfo = new SummaryInfo();
     private boolean searchOnTrakt = Boolean.FALSE;
     private boolean foundOnTrakt = Boolean.FALSE;
@@ -11,11 +15,29 @@ public class Episode {
     public Episode() {
         this.season = 0;
         this.episode = 0;
+        this.watched = Boolean.FALSE;
+        this.watchedDate = null;
     }
 
     public Episode(int season, int episode) {
         this.season = season;
         this.episode = episode;
+        this.watched = Boolean.FALSE;
+        this.watchedDate = null;
+    }
+
+    public Episode(int season, int episode, boolean watched) {
+        this.season = season;
+        this.episode = episode;
+        this.watched = watched;
+        this.watchedDate = new Date();
+    }
+
+    public Episode(int season, int episode, boolean watched, Date watchedDate) {
+        this.season = season;
+        this.episode = episode;
+        this.watched = watched;
+        this.watchedDate = watchedDate;
     }
 
     public int getEpisode() {
@@ -24,6 +46,10 @@ public class Episode {
 
     public int getSeason() {
         return season;
+    }
+
+    public boolean isWatched() {
+        return watched;
     }
 
     public SummaryInfo getSummaryInfo() {
@@ -58,9 +84,20 @@ public class Episode {
         this.searchOnTrakt = searchOnTrakt;
     }
 
-    @Override
-    public String toString() {
-        return "Episode{" + "season=" + season + ", episode=" + episode + ", summaryInfo=" + summaryInfo + ", searchOnTrakt=" + searchOnTrakt + ", foundOnTrakt=" + foundOnTrakt + '}';
+    public void setWatched(boolean watched) {
+        this.watched = watched;
     }
 
+    public Date getWatchedDate() {
+        return watchedDate;
+    }
+
+    public void setWatchedDate(Date watchedDate) {
+        this.watchedDate = watchedDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Episode{" + "season=" + season + ", episode=" + episode + ", watched=" + watched + ", summaryInfo=" + summaryInfo + ", searchOnTrakt=" + searchOnTrakt + ", foundOnTrakt=" + foundOnTrakt + '}';
+    }
 }

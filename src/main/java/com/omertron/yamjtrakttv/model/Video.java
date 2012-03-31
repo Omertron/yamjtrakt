@@ -18,6 +18,7 @@ public class Video {
     private String type = "";
     private Map<String, String> idMap = new HashMap<String, String>();
     private boolean watched = Boolean.FALSE;
+    private boolean watchedEpsidoes = Boolean.FALSE;
     private Date watchedDate = null;
     private boolean searchOnTrakt = Boolean.FALSE;
     private boolean foundOnTrakt = Boolean.FALSE;
@@ -56,6 +57,10 @@ public class Video {
 
     public boolean isWatched() {
         return watched;
+    }
+
+    public boolean hasWatchedEpsidoes() {
+        return watchedEpsidoes;
     }
 
     public void setTitle(String title) {
@@ -97,10 +102,16 @@ public class Video {
     }
 
     public void addEpisode(Episode episode) {
+        // Update the watched episodes flag
+        this.watchedEpsidoes |= episode.isWatched();
         episodes.add(episode);
     }
 
     public void addEpisodes(List<Episode> episodeList) {
+        // Update the watched episodes flag
+        for (Episode episode : episodeList) {
+            this.watchedEpsidoes |= episode.isWatched();
+        }
         episodes.addAll(episodeList);
     }
 

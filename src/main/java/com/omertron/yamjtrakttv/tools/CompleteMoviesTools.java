@@ -11,9 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ParseCompleteMovies {
+public class CompleteMoviesTools {
 
-    private static final Logger logger = Logger.getLogger(ParseCompleteMovies.class);
+    private static final Logger logger = Logger.getLogger(CompleteMoviesTools.class);
 
     /**
      * Parse the video element and extract the information from it.
@@ -31,7 +31,7 @@ public class ParseCompleteMovies {
         String stringDate = DOMHelper.getValueFromElement(eVideo, "watchedDate");
         if (StringUtils.isNumeric(stringDate)) {
             v.setWatchedDate(new Date(Long.parseLong(stringDate)));
-        }else{
+        } else {
             v.setWatchedDate(new Date());
         }
 
@@ -80,13 +80,22 @@ public class ParseCompleteMovies {
                     int season = Integer.parseInt(DOMHelper.getValueFromElement(eFile, "season"));
                     int firstPart = Integer.parseInt(eFile.getAttribute("firstPart"));
                     int lastPart = Integer.parseInt(eFile.getAttribute("lastPart"));
+                    boolean watched = Boolean.parseBoolean(DOMHelper.getValueFromElement(eFile, "watched"));
+                    Date watchedDate;
+
+                    String stringDate = DOMHelper.getValueFromElement(eVideo, "watchedDate");
+                    if (StringUtils.isNumeric(stringDate)) {
+                        watchedDate = new Date(Long.parseLong(stringDate));
+                    } else {
+                        watchedDate = new Date();
+                    }
+
                     for (int episode = firstPart; episode <= lastPart; episode++) {
-                        episodes.add(new Episode(season, episode));
+                        episodes.add(new Episode(season, episode, watched, watchedDate));
                     }
                 }
             }
         }
         return episodes;
     }
-
 }

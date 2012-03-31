@@ -1,5 +1,118 @@
-[YAMJTraktTv-YamjTraktApp-15:30:40] YAMJ Trakt.tv App
-[YAMJTraktTv-YamjTraktApp-15:30:40] ~~~~ ~~~~~~~~ ~~~
-[YAMJTraktTv-YamjTraktApp-15:30:40]      Version: null
-[YAMJTraktTv-YamjTraktApp-15:30:40]   Build date: null
-[YAMJTraktTv-YamjTraktApp-15:30:40] Java version: 1.6.0_31
+[YAMJTraktTv-YamjTraktApp-08:40:20] YAMJ Trakt.tv App
+[YAMJTraktTv-YamjTraktApp-08:40:20] ~~~~ ~~~~~~~~ ~~~
+[YAMJTraktTv-YamjTraktApp-08:40:20]      Version: null
+[YAMJTraktTv-YamjTraktApp-08:40:20]   Build date: null
+[YAMJTraktTv-YamjTraktApp-08:40:20] Java version: 1.7.0_03
+[YAMJTraktTv-YamjTraktApp-08:40:20] 
+[YAMJTraktTv-MainWindow-08:40:30] Setting MarkAllWatched to true
+[YAMJTraktTv-MainWindow-08:40:31] Setting MarkAllWatched to false
+[YAMJTraktTv-ProgressProcessor-08:40:33] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
+[YAMJTraktTv-MainWindow-08:40:33] Loaded CompleteMovies from C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
+[YAMJTraktTv-ProgressProcessor-08:40:33] Found 30 videos to process
+[YAMJTraktTv-MainWindow-08:40:33] Found 30 videos to process
+[YAMJTraktTv-MainWindow-08:40:33]   #1) MOVIE - 28 Days Later
+[YAMJTraktTv-MainWindow-08:40:33]   #2) MOVIE - 3 10 To Yuma
+[YAMJTraktTv-MainWindow-08:40:33]   #3) MOVIE - 30 Days Of Night
+[YAMJTraktTv-MainWindow-08:40:33]   #4) TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:33]   #5) TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:33]   #6) TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:33]   #7) TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:33]   #8) TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:33]   #9) TVSHOW - A Gifted Man
+[YAMJTraktTv-MainWindow-08:40:33]   #10) TVSHOW - Alcatraz
+[YAMJTraktTv-MainWindow-08:40:33]   #11) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:33]   #12) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:33]   #13) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:33]   #14) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:33]   #15) TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:33]   #16) TVSHOW - Alphas
+[YAMJTraktTv-MainWindow-08:40:33]   #17) TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-08:40:33]   #18) TVSHOW - BBC South Pacific
+[YAMJTraktTv-MainWindow-08:40:33]   #19) TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-08:40:33]   #20) TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-08:40:33]   #21) TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-08:40:33]   #22) TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-08:40:33]   #23) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-08:40:33]   #24) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-08:40:33]   #25) TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-08:40:33]   #26) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:40:33]   #27) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:40:33]   #28) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:40:33]   #29) TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:40:33]   #30) TVSHOW - BlackAdder
+[YAMJTraktTv-ProgressProcessor$1-08:40:33] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
+[YAMJTraktTv-MainWindow-08:40:33] Finished processing C:\Users\Stuart\Dropbox\YAMJ\NetBeans\YamjTraktTv\samples\CompleteMovies.xml
+[YAMJTraktTv-ProgressProcessor$1-08:40:33] Library contains 3 movies and 11 TV shows with 385 episodes total.
+[YAMJTraktTv-MainWindow-08:40:33] Library contains 3 movies and 11 TV shows with 385 episodes total.
+[YAMJTraktTv-TraktTools-08:40:37] Authentication successful
+[YAMJTraktTv-TraktTools-08:40:38] Authentication successful
+[YAMJTraktTv-MainWindow-08:40:42] Processing Videos on Trakt.tv
+[YAMJTraktTv-MainWindow-08:40:42] Library contains 3 movies and 11 TV shows with 385 episodes total.
+[YAMJTraktTv-MainWindow-08:40:42] Done!
+[YAMJTraktTv-MainWindow-08:40:42] 
+[YAMJTraktTv-ProgressProcessor$2-08:40:42] Will use the date Sat Mar 31 08:40:42 BST 2012 for videos if required
+[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - BBC South Pacific
+[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW BBC South Pacific has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW Black Books has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:40:42] Processing TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-08:40:42] Video TVSHOW Being Erica has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:40:42] Submitted 14 tasks to be processed on 4 threads.
+[YAMJTraktTv-MainWindow-08:40:42] Processing MOVIE - 3 10 To Yuma
+[YAMJTraktTv-MainWindow-08:40:42] Video MOVIE 3 10 To Yuma has not been watched. Skipping
+[YAMJTraktTv-TraktTools-08:40:43] Error getting information for TV show: BBC South Pacific - Error: show not found
+[YAMJTraktTv-TraktTools-08:40:43] BBC South Pacific was not found on trakt.tv
+[YAMJTraktTv-MainWindow-08:40:43] Adding TVSHOW BBC South Pacific to collection
+[YAMJTraktTv-TraktTools-08:40:43] BBC South Pacific was not found on trakt.tv
+[YAMJTraktTv-MainWindow-08:40:43] Finished TVSHOW - BBC South Pacific
+[YAMJTraktTv-MainWindow-08:40:43] Processing TVSHOW - A Gifted Man
+[YAMJTraktTv-MainWindow-08:40:43] Video TVSHOW A Gifted Man has not been watched. Skipping
+[YAMJTraktTv-TraktTools-08:40:44] Updated seen for 3 10 To Yuma
+[YAMJTraktTv-MainWindow-08:40:44] Adding MOVIE 3 10 To Yuma to collection
+[YAMJTraktTv-MainWindow-08:40:44] Finished MOVIE - 3 10 To Yuma
+[YAMJTraktTv-MainWindow-08:40:44] Processing TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:40:44] Video TVSHOW 24 has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:40:57] Adding TVSHOW A Gifted Man to collection
+[YAMJTraktTv-MainWindow-08:40:57] Finished TVSHOW - A Gifted Man
+[YAMJTraktTv-MainWindow-08:40:57] Processing TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-08:40:57] Video TVSHOW Better Off Ted has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:40:58] Adding TVSHOW Black Books to collection
+[YAMJTraktTv-MainWindow-08:40:59] Finished TVSHOW - Black Books
+[YAMJTraktTv-MainWindow-08:40:59] Processing TVSHOW - Ally McBeal
+[YAMJTraktTv-MainWindow-08:40:59] Video TVSHOW Ally McBeal has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:41:01] Adding TVSHOW Being Erica to collection
+[YAMJTraktTv-MainWindow-08:41:01] Finished TVSHOW - Being Erica
+[YAMJTraktTv-MainWindow-08:41:01] Processing TVSHOW - Alcatraz
+[YAMJTraktTv-MainWindow-08:41:01] Video TVSHOW Alcatraz has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:41:11] Adding TVSHOW Alcatraz to collection
+[YAMJTraktTv-MainWindow-08:41:11] Finished TVSHOW - Alcatraz
+[YAMJTraktTv-MainWindow-08:41:11] Processing MOVIE - 28 Days Later
+[YAMJTraktTv-MainWindow-08:41:11] Marking seen: MOVIE 28 Days Later
+[YAMJTraktTv-TraktTools-08:41:12] Updated seen for 28 Days Later
+[YAMJTraktTv-MainWindow-08:41:12] Adding MOVIE 28 Days Later to collection
+[YAMJTraktTv-MainWindow-08:41:12] Finished MOVIE - 28 Days Later
+[YAMJTraktTv-MainWindow-08:41:12] Processing TVSHOW - Alphas
+[YAMJTraktTv-MainWindow-08:41:12] Video TVSHOW Alphas has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:41:21] Adding TVSHOW Better Off Ted to collection
+[YAMJTraktTv-MainWindow-08:41:21] Finished TVSHOW - Better Off Ted
+[YAMJTraktTv-MainWindow-08:41:21] Processing MOVIE - 30 Days Of Night
+[YAMJTraktTv-MainWindow-08:41:21] Marking seen: MOVIE 30 Days Of Night
+[YAMJTraktTv-MainWindow-08:41:22] Adding TVSHOW Alphas to collection
+[YAMJTraktTv-TraktTools-08:41:22] Updated seen for 30 Days Of Night
+[YAMJTraktTv-MainWindow-08:41:22] Adding MOVIE 30 Days Of Night to collection
+[YAMJTraktTv-MainWindow-08:41:23] Finished TVSHOW - Alphas
+[YAMJTraktTv-MainWindow-08:41:23] Processing TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:41:23] Video TVSHOW BlackAdder has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:41:23] Finished MOVIE - 30 Days Of Night
+[YAMJTraktTv-MainWindow-08:41:23] Processing TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-08:41:23] Video TVSHOW Babylon 5 has not been watched. Skipping
+[YAMJTraktTv-MainWindow-08:41:42] Adding TVSHOW Babylon 5 to collection
+[YAMJTraktTv-MainWindow-08:41:42] Finished TVSHOW - Babylon 5
+[YAMJTraktTv-MainWindow-08:41:44] Adding TVSHOW BlackAdder to collection
+[YAMJTraktTv-MainWindow-08:41:45] Finished TVSHOW - BlackAdder
+[YAMJTraktTv-MainWindow-08:42:41] Adding TVSHOW 24 to collection
+[YAMJTraktTv-MainWindow-08:42:41] Finished TVSHOW - 24
+[YAMJTraktTv-MainWindow-08:42:44] Adding TVSHOW Ally McBeal to collection
+[YAMJTraktTv-MainWindow-08:42:44] Finished TVSHOW - Ally McBeal
+[YAMJTraktTv-ProgressProcessor$2-08:42:44] Waiting for threads to finish...
+[YAMJTraktTv-ProgressProcessor$2-08:42:45] All threads have finished

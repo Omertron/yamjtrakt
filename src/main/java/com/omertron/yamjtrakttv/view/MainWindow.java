@@ -4,18 +4,10 @@
  */
 package com.omertron.yamjtrakttv.view;
 
-import com.jakewharton.trakt.entities.Movie;
-import com.jakewharton.trakt.entities.TvEntity;
-import com.jakewharton.trakt.entities.TvShow;
 import com.omertron.yamjtrakttv.YamjTraktApp;
-import com.omertron.yamjtrakttv.model.Episode;
-import com.omertron.yamjtrakttv.model.Video;
-import com.omertron.yamjtrakttv.tools.ParseCompleteMovies;
+import com.omertron.yamjtrakttv.tools.ProgressProcessor;
 import com.omertron.yamjtrakttv.tools.TraktTools;
-import java.awt.Dimension;
-import java.awt.Point;
 import java.io.File;
-import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 import org.apache.commons.lang3.StringUtils;
@@ -42,12 +34,15 @@ public class MainWindow extends javax.swing.JFrame {
         int mwHeight = btnExit.getSize().height + btnExit.getLocation().y + 70;
 
         this.setSize(mwWidth, mwHeight);
+        int numberOfProcessors = Runtime.getRuntime().availableProcessors();
+        this.spnProcessingThreads.setValue(Math.max(numberOfProcessors / 2, 1));
 
 
 //        String col[] = {"Season", "Episode", "Title"};
 //        String data[][][] = {};
 //        model = new DefaultTableModel(data, col);
 //        tblEpisodes = new JTable(model);
+
     }
 
     private void updateCredentials() {
@@ -77,7 +72,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblProgressTitle.setText(progressTitle);
     }
 
-    public void progressAddText(String progressText) {
+    public synchronized void progressAddText(String progressText) {
         taProgress.append(progressText);
         taProgress.append("\n");
         taProgress.setCaretPosition(taProgress.getDocument().getLength());
@@ -100,32 +95,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     public void updateLibraryStats(String updateText) {
         txtLibraryStats.setText(updateText);
-    }
-
-    public void updateVideoWindow(Video video) {
-        txtVideoTitle.setText(video.getTitle());
-        txtVideoYear.setText(String.valueOf(video.getYear()));
-        txtVideoType.setText(video.getType());
-
-        chkWatched.setSelected(video.isWatched());
-        if (video.isWatched()) {
-            txtVideoWatchedDate.setText(video.getWatchedDate().toString());
-        } else {
-            txtVideoWatchedDate.setText("");
-        }
-
-        // Episode information? Table?
-        model.setRowCount(0);
-        if (video.isTvshow()) {
-            logger.info("Setting row count to " + video.getEpisodes().size());
-            model.setRowCount(video.getEpisodes().size());
-            for (Episode episode : video.getEpisodes()) {
-                logger.info("Adding " + episode.getSeason() + " " + episode.getEpisode());
-                model.insertRow(0, new Object[]{episode.getSeason(), episode.getEpisode(), ""});
-            }
-        }
-        // Poster
-        lblVideoPosterImage.setText("No poster");
     }
 
     /**
@@ -157,15 +126,6 @@ public class MainWindow extends javax.swing.JFrame {
         spProgress = new javax.swing.JScrollPane();
         taProgress = new javax.swing.JTextArea();
         lblProgressTitle = new javax.swing.JLabel();
-        dlgVideo = new javax.swing.JDialog();
-        txtVideoTitle = new javax.swing.JTextField();
-        txtVideoYear = new javax.swing.JTextField();
-        txtVideoType = new javax.swing.JTextField();
-        txtVideoWatchedDate = new javax.swing.JTextField();
-        chkWatched = new javax.swing.JCheckBox();
-        lblVideoPosterImage = new javax.swing.JLabel();
-        scrEpisodes = new javax.swing.JScrollPane();
-        tblEpisodes = new javax.swing.JTable();
         btnBrowse = new javax.swing.JButton();
         txtCompleteMoviesPath = new javax.swing.JTextField();
         btnLoadFile = new javax.swing.JButton();
@@ -174,7 +134,9 @@ public class MainWindow extends javax.swing.JFrame {
         lbllogo = new javax.swing.JLabel();
         btnCredentials = new javax.swing.JButton();
         btnProcess = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkMarkAllWatched = new javax.swing.JCheckBox();
+        spnProcessingThreads = new javax.swing.JSpinner();
+        lblProcessingThreads = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuFileCredentials = new javax.swing.JMenuItem();
@@ -396,118 +358,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        dlgVideo.setMinimumSize(new java.awt.Dimension(542, 322));
-
-        txtVideoTitle.setEditable(false);
-        txtVideoTitle.setText("title");
-        txtVideoTitle.setFocusable(false);
-
-        txtVideoYear.setEditable(false);
-        txtVideoYear.setText("year");
-
-        txtVideoType.setEditable(false);
-        txtVideoType.setText("Type");
-
-        txtVideoWatchedDate.setEditable(false);
-        txtVideoWatchedDate.setText("Watched Date");
-        txtVideoWatchedDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVideoWatchedDateActionPerformed(evt);
-            }
-        });
-
-        chkWatched.setText("Watched");
-
-        lblVideoPosterImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblVideoPosterImage.setText("PosterImage");
-        lblVideoPosterImage.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblVideoPosterImage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        lblVideoPosterImage.setMaximumSize(new java.awt.Dimension(200, 300));
-        lblVideoPosterImage.setMinimumSize(new java.awt.Dimension(200, 300));
-        lblVideoPosterImage.setPreferredSize(new java.awt.Dimension(200, 300));
-
-        tblEpisodes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Season", "Episode", "Title"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tblEpisodes.getTableHeader().setReorderingAllowed(false);
-        scrEpisodes.setViewportView(tblEpisodes);
-        tblEpisodes.getColumnModel().getColumn(0).setMinWidth(50);
-        tblEpisodes.getColumnModel().getColumn(0).setPreferredWidth(50);
-        tblEpisodes.getColumnModel().getColumn(0).setMaxWidth(50);
-        tblEpisodes.getColumnModel().getColumn(1).setMinWidth(50);
-        tblEpisodes.getColumnModel().getColumn(1).setPreferredWidth(50);
-        tblEpisodes.getColumnModel().getColumn(1).setMaxWidth(50);
-
-        javax.swing.GroupLayout dlgVideoLayout = new javax.swing.GroupLayout(dlgVideo.getContentPane());
-        dlgVideo.getContentPane().setLayout(dlgVideoLayout);
-        dlgVideoLayout.setHorizontalGroup(
-            dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgVideoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dlgVideoLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(chkWatched)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtVideoWatchedDate, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dlgVideoLayout.createSequentialGroup()
-                        .addComponent(txtVideoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVideoYear, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtVideoType, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scrEpisodes, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblVideoPosterImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        dlgVideoLayout.setVerticalGroup(
-            dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgVideoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblVideoPosterImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dlgVideoLayout.createSequentialGroup()
-                        .addGroup(dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(dlgVideoLayout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtVideoWatchedDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(chkWatched)))
-                            .addGroup(dlgVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtVideoTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtVideoYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtVideoType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(scrEpisodes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("YAMJ Trakt.tv Populator");
-        setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(400, 300));
-        setPreferredSize(new java.awt.Dimension(430, 350));
         setResizable(false);
 
         btnBrowse.setText("Browse");
@@ -570,7 +423,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setText("Mark all videos watched");
+        chkMarkAllWatched.setText("Mark all videos watched");
+        chkMarkAllWatched.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkMarkAllWatchedActionPerformed(evt);
+            }
+        });
+
+        lblProcessingThreads.setText("Processing Threads");
 
         mnuFile.setText("File");
 
@@ -601,23 +461,27 @@ public class MainWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtLibraryStats)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtCompleteMoviesPath, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnBrowse))
-                        .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLoadFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnCredentials, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chkMarkAllWatched)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblProcessingThreads)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spnProcessingThreads, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtLibraryStats)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCompleteMoviesPath, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBrowse))
+                    .addComponent(lbllogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnProcess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLoadFile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCredentials, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnExit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -631,8 +495,11 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(btnBrowse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtLibraryStats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkMarkAllWatched)
+                    .addComponent(spnProcessingThreads, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblProcessingThreads))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLoadFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -681,12 +548,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadFileActionPerformed
-
         fraProgress.setVisible(Boolean.TRUE);
-        ParseCompleteMovies.setProgressWindow(this);
+        ProgressProcessor.setProgressWindow(this);
 
         // Load the complete movies
-        ParseCompleteMovies.parse(YamjTraktApp.getLibrary(), YamjTraktApp.getLibrary().getPathCompleteMovie());
+        ProgressProcessor.parseCompleteMovies(YamjTraktApp.getLibrary(), YamjTraktApp.getLibrary().getPathCompleteMovie());
 
         YamjTraktApp.setCompleteMoviesProcessed(Boolean.TRUE);
         updateButtons();
@@ -730,82 +596,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
         lblProgressTitle.setText("Adding videos to Trakt.tv");
         fraProgress.setVisible(Boolean.TRUE);
-
         btnProgressOK.setEnabled(Boolean.FALSE);
-//        dlgVideo.setVisible(Boolean.TRUE);
+        ProgressProcessor.setProgressWindow(this);
 
-        (new Thread() {
+        int numberOfThreads = (Integer) spnProcessingThreads.getValue();
+        ProgressProcessor.sendToTrakt(numberOfThreads);
 
-            @Override
-            public void run() {
-                progressClearText();
-                int totalToProcess = YamjTraktApp.getLibrary().getNumberMovies() + YamjTraktApp.getLibrary().getNumberTV();
-                progressBarLimits(1, totalToProcess);
-
-                progressAddText("Processing Videos on Trakt.tv");
-                progressAddText(YamjTraktApp.getLibrary().getStats());
-
-                Map<String, Video> libVids = YamjTraktApp.getLibrary().getVideos();
-
-                int progressCount = 1;
-                StringBuilder output;
-                for (String videoTitle : libVids.keySet()) {
-                    Video video = libVids.get(videoTitle);
-
-                    updateVideoWindow(video);
-
-                    output = new StringBuilder(videoTitle);
-                    output.append(" (").append(video.getType()).append(")");
-                    output.append(" YAMJ Watched: ").append(video.isWatched());
-
-                    if (video.isMovie()) {
-                        Movie movie = TraktTools.getMovieSummary(video);
-                        if (movie == null) {
-                            output.append((" - Failed to get information"));
-                        } else {
-                            output.append(" Collection: ").append(movie.inCollection);
-                            output.append(" WatchList: ").append(movie.inWatchlist);
-                            TraktTools.addSeen(video);
-                            TraktTools.addToCollection(video);
-                        }
-                        progressAddText(output.toString());
-                    } else {
-                        TvShow tvshow = TraktTools.getTvShowSummary(video);
-                        if (tvshow == null) {
-                            output.append((" Failed to get information"));
-                            progressAddText(output.toString());
-                        } else {
-                            output.append(" WatchList: ").append(tvshow.inWatchlist);
-                            progressAddText(output.toString());
-                            for (Episode episode : video.getEpisodes()) {
-                                output = new StringBuilder(episode.getSeason() < 10 ? "  S0" : "  S");
-                                output.append(episode.getSeason()).append(episode.getEpisode() < 10 ? "E0" : "E").append(episode.getEpisode()).append(") ");
-                                TvEntity tve = TraktTools.getEpisodeSummary(video, episode);
-                                if (tve == null) {
-                                    output.append(video.getTitle()).append(" Episode: ").append(episode.getEpisode()).append(" - Failed to get information");
-                                } else {
-                                    output.append(tve.episode.title).append(" Watched: ").append(tve.episode.watched);
-                                    output.append(" Plays: ").append(tve.episode.plays);
-                                }
-                                progressAddText(output.toString());
-                            }
-                            TraktTools.addSeen(video);
-                            TraktTools.addToCollection(video);
-                        }
-                    }
-                    progressBarProgress(progressCount++);
-                }
-
-                progressAddText("Processed " + --progressCount + " videos.");
-                progressAddText("Done!");
-                progressAddText("");
-                btnProgressOK.setEnabled(Boolean.TRUE);
-//                dlgVideo.setVisible(Boolean.FALSE);
-
-            }
-        }).start();
-
-
+        btnProgressOK.setEnabled(Boolean.TRUE);
+        updateButtons();
     }//GEN-LAST:event_btnProcessActionPerformed
 
     private void btnProgressOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgressOKActionPerformed
@@ -814,9 +612,10 @@ public class MainWindow extends javax.swing.JFrame {
         Thread.interrupted();
     }//GEN-LAST:event_btnProgressOKActionPerformed
 
-    private void txtVideoWatchedDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVideoWatchedDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVideoWatchedDateActionPerformed
+    private void chkMarkAllWatchedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMarkAllWatchedActionPerformed
+        YamjTraktApp.setMarkAllWatched(chkMarkAllWatched.isSelected());
+        logger.debug("Setting MarkAllWatched to " + YamjTraktApp.isMarkAllWatched());
+    }//GEN-LAST:event_chkMarkAllWatchedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -870,20 +669,18 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnLoadFile;
     private javax.swing.JButton btnProcess;
     private javax.swing.JButton btnProgressOK;
-    private javax.swing.JCheckBox chkWatched;
+    private javax.swing.JCheckBox chkMarkAllWatched;
     private javax.swing.JDialog dlgCredentials;
-    private javax.swing.JDialog dlgVideo;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JFrame fraProgress;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JLabel lblCredApikey;
     private javax.swing.JLabel lblCredPassword;
     private javax.swing.JLabel lblCredResponse;
     private javax.swing.JLabel lblCredUsername;
     private javax.swing.JLabel lblCredlogo;
+    private javax.swing.JLabel lblProcessingThreads;
     private javax.swing.JLabel lblProgressTitle;
-    private javax.swing.JLabel lblVideoPosterImage;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JMenuBar mnuBar;
     private javax.swing.JMenu mnuFile;
@@ -894,17 +691,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuHelpDonate;
     private javax.swing.JProgressBar pbProgress;
     private javax.swing.JPasswordField pwdCredPassword;
-    private javax.swing.JScrollPane scrEpisodes;
     private javax.swing.JScrollPane spProgress;
+    private javax.swing.JSpinner spnProcessingThreads;
     private javax.swing.JTextArea taProgress;
-    private javax.swing.JTable tblEpisodes;
     private javax.swing.JTextField txtCompleteMoviesPath;
     private javax.swing.JTextField txtCredApikey;
     private javax.swing.JTextField txtCredUsername;
     private javax.swing.JTextField txtLibraryStats;
-    private javax.swing.JTextField txtVideoTitle;
-    private javax.swing.JTextField txtVideoType;
-    private javax.swing.JTextField txtVideoWatchedDate;
-    private javax.swing.JTextField txtVideoYear;
     // End of variables declaration//GEN-END:variables
 }

@@ -135,11 +135,15 @@ public class TraktTools {
     }
 
     public static void addSeen(Video video, boolean forceWatched) {
-        if (video.isWatched() || forceWatched) {
-            logger.debug("Marking seen: " + video.getType() + " " + video.getTitle());
+        StringBuilder message = new StringBuilder();
+        if (video.isWatched()) {
+            message.append("Marking seen: ").append(video.getType()).append(" ").append(video.getTitle());
+        } else if (forceWatched) {
+            message.append("Forcing seen: ").append(video.getType()).append(" ").append(video.getTitle());
         } else {
-            logger.debug("Video " + video.getType() + " " + video.getTitle() + " has not been watched. Skipping");
+            message.append("Video ").append(video.getType()).append(" ").append(video.getTitle()).append(" has not been watched. Skipping");
         }
+        ProgressProcessor.progressMessage(message.toString());
 
         if (video.isMovie()) {
             addMovieSeen(video);
@@ -195,7 +199,10 @@ public class TraktTools {
     }
 
     public static void addToCollection(Video video) {
-        logger.info("Adding " + video.getType() + " " + video.getTitle() + " to collection");
+        StringBuilder message = new StringBuilder();
+        message.append("Adding ").append(video.getType()).append(" ").append(video.getTitle()).append(" to collection");
+        ProgressProcessor.progressMessage(message.toString());
+        
         if (video.isMovie()) {
             addMovieToCollection(video);
         } else {

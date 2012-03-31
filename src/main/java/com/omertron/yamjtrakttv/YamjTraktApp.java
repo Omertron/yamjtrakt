@@ -19,6 +19,7 @@ public class YamjTraktApp {
     private static Library completeMoviesLibrary = new Library();
     private static boolean completeMoviesLoaded = Boolean.FALSE;
     private static boolean completeMoviesProcessed = Boolean.FALSE;
+    private static boolean markAllWatched = Boolean.FALSE;
 
     public static void main(String[] args) {
         credentials = new Credentials();
@@ -113,5 +114,13 @@ public class YamjTraktApp {
 
     public static void setCompleteMoviesProcessed(boolean completeMoviesProcessed) {
         YamjTraktApp.completeMoviesProcessed = completeMoviesProcessed;
+    }
+
+    public static boolean isMarkAllWatched() {
+        return markAllWatched;
+    }
+
+    public static void setMarkAllWatched(boolean markAllWatched) {
+        YamjTraktApp.markAllWatched = markAllWatched;
     }
 }

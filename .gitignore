@@ -4,4 +4,4 @@
 /target/
 /nbactions.xml
 /release/*.jar
-/*.log
+*.log

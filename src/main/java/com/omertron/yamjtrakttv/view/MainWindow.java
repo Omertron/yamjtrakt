@@ -7,9 +7,14 @@ package com.omertron.yamjtrakttv.view;
 import com.omertron.yamjtrakttv.YamjTraktApp;
 import com.omertron.yamjtrakttv.tools.ProgressProcessor;
 import com.omertron.yamjtrakttv.tools.TraktTools;
+import java.awt.Desktop;
+import java.awt.Dimension;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.table.DefaultTableModel;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 
@@ -20,9 +25,7 @@ import org.apache.log4j.Logger;
 public class MainWindow extends javax.swing.JFrame {
 
     private static final Logger logger = Logger.getLogger(MainWindow.class);
-//    private static final String DEFAULT_DIRECTORY = "C:/Documents and Settings/stuart.boston/My Documents/Dropbox/YAMJ/NetBeans/YamjTraktTv/samples";
     private static final String DEFAULT_DIRECTORY = "C:/Users/Stuart/Dropbox/YAMJ/NetBeans/YamjTraktTv/samples";
-    private DefaultTableModel model;
 
     /**
      * Creates new form MainWindow
@@ -30,19 +33,18 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
 
-        int mwWidth = btnExit.getSize().width + btnExit.getLocation().x + 20;
-        int mwHeight = btnExit.getSize().height + btnExit.getLocation().y + 70;
+        // Resize the main window
+        this.setSize(resizeWindow(btnExit, 20, 70));
 
-        this.setSize(mwWidth, mwHeight);
         int numberOfProcessors = Runtime.getRuntime().availableProcessors();
         this.spnProcessingThreads.setValue(Math.max(numberOfProcessors / 2, 1));
 
+    }
 
-//        String col[] = {"Season", "Episode", "Title"};
-//        String data[][][] = {};
-//        model = new DefaultTableModel(data, col);
-//        tblEpisodes = new JTable(model);
-
+    private Dimension resizeWindow(JButton btn, int offsetX, int offsetY) {
+        int width = btn.getSize().width + btn.getLocation().x + offsetX;
+        int height = btn.getSize().height + btn.getLocation().y + offsetY;
+        return new Dimension(width, height);
     }
 
     private void updateCredentials() {
@@ -120,6 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
         lblCredResponse = new javax.swing.JLabel();
         btnCredLoad = new javax.swing.JButton();
         btnCredSave = new javax.swing.JButton();
+        lblCredApiUrl = new javax.swing.JLabel();
         fraProgress = new javax.swing.JFrame();
         pbProgress = new javax.swing.JProgressBar();
         btnProgressOK = new javax.swing.JButton();
@@ -146,10 +149,11 @@ public class MainWindow extends javax.swing.JFrame {
         mnuHelpAbout = new javax.swing.JMenuItem();
         mnuHelpDonate = new javax.swing.JMenuItem();
 
-        dlgCredentials.setMinimumSize(new java.awt.Dimension(400, 350));
+        dlgCredentials.setMinimumSize(new java.awt.Dimension(410, 360));
         dlgCredentials.setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         dlgCredentials.setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         dlgCredentials.setName("Credentials");
+        dlgCredentials.setPreferredSize(new java.awt.Dimension(410, 360));
         dlgCredentials.setResizable(false);
 
         lblCredUsername.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -180,6 +184,11 @@ public class MainWindow extends javax.swing.JFrame {
         txtCredApikey.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtCredApikey.setMinimumSize(new java.awt.Dimension(300, 25));
         txtCredApikey.setPreferredSize(new java.awt.Dimension(300, 25));
+        txtCredApikey.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCredApikeyActionPerformed(evt);
+            }
+        });
 
         pwdCredPassword.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         pwdCredPassword.setMinimumSize(new java.awt.Dimension(300, 25));
@@ -232,6 +241,17 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        lblCredApiUrl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblCredApiUrl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCredApiUrl.setText("API Key can be found here: http://trakt.tv/settings/api");
+        lblCredApiUrl.setToolTipText("Click to open in browser");
+        lblCredApiUrl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblCredApiUrl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCredApiUrlMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout dlgCredentialsLayout = new javax.swing.GroupLayout(dlgCredentials.getContentPane());
         dlgCredentials.getContentPane().setLayout(dlgCredentialsLayout);
         dlgCredentialsLayout.setHorizontalGroup(
@@ -239,6 +259,9 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(dlgCredentialsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(dlgCredentialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dlgCredentialsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblCredApiUrl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(dlgCredentialsLayout.createSequentialGroup()
                         .addComponent(btnCredTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -283,7 +306,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(dlgCredentialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCredApikey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCredApikey, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblCredApiUrl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblCredResponse)
                 .addGap(18, 18, 18)
                 .addGroup(dlgCredentialsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -291,7 +316,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(btnCredLoad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCredSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCredOk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         fraProgress.setMinimumSize(new java.awt.Dimension(650, 300));
@@ -617,6 +642,20 @@ public class MainWindow extends javax.swing.JFrame {
         logger.debug("Setting MarkAllWatched to " + YamjTraktApp.isMarkAllWatched());
     }//GEN-LAST:event_chkMarkAllWatchedActionPerformed
 
+    private void txtCredApikeyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCredApikeyActionPerformed
+    }//GEN-LAST:event_txtCredApikeyActionPerformed
+
+    private void lblCredApiUrlMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCredApiUrlMouseClicked
+        try {
+            URI uri = new URI("http://trakt.tv/settings/api");
+            Desktop.getDesktop().browse(uri);
+        } catch (IOException ex) {
+            logger.error("Failed to open URL - " + ex.getMessage());
+        } catch (URISyntaxException ex) {
+            logger.error("Failed to open URL - " + ex.getMessage());
+        }
+    }//GEN-LAST:event_lblCredApiUrlMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -674,6 +713,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JFrame fraProgress;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JLabel lblCredApiUrl;
     private javax.swing.JLabel lblCredApikey;
     private javax.swing.JLabel lblCredPassword;
     private javax.swing.JLabel lblCredResponse;

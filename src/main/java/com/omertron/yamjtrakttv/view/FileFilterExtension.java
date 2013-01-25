@@ -1,3 +1,22 @@
+/*
+ *      Copyright (c) 2004-2013 Stuart Boston
+ *
+ *      This file is part of the YAMJ Trakt Application.
+ *
+ *      The YAMJ Trakt Application is free software: you can redistribute it and/or modify
+ *      it under the terms of the GNU General Public License as published by
+ *      the Free Software Foundation, either version 3 of the License, or
+ *      any later version.
+ *
+ *      The YAMJ Trakt Application is distributed in the hope that it will be useful,
+ *      but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *      GNU General Public License for more details.
+ *
+ *      You should have received a copy of the GNU General Public License
+ *      along with the YAMJ Trakt Application.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package com.omertron.yamjtrakttv.view;
 
 import java.io.File;
@@ -13,7 +32,7 @@ public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
 
     /**
      * Create the custom filter with just the extension
-     * @param extension 
+     * @param extension
      */
     public FileFilterExtension(String extension) {
         if (extension.startsWith(".")) {
@@ -21,14 +40,14 @@ public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
         } else {
             this.extension = "." + extension;
         }
-        
+
         description = "All " + extension.substring(1).toUpperCase() + " files";
     }
 
     /**
      * Create the custom filter with the extension and the description
      * @param extension
-     * @param description 
+     * @param description
      */
     public FileFilterExtension(String extension, String description) {
         if (extension.startsWith(".")) {
@@ -36,7 +55,7 @@ public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
         } else {
             this.extension = "." + extension;
         }
-        
+
         this.description = description + " (*" + extension + ")";
     }
 

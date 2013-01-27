@@ -13,3 +13,7 @@ Download
 --------
 You can download the latest version [from here](https://github.com/Omertron/yamjtrakt/tree/master/release)
 Although this will change to [MediaPlayerSite](http://mediaplayersite.com/) at some point
+
+Project Documentation
+---------------------
+The automatically generated documentation can be found [HERE](http://omertron.github.com/yamjtrakt/)

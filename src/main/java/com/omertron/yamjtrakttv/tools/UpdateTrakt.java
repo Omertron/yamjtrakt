@@ -38,9 +38,8 @@ public class UpdateTrakt implements Runnable, Callable<Integer> {
     }
 
     private int process() {
-        String returnMessage;
-
         ProgressProcessor.progressMessage("Processing " + video.getType() + " - " + video.getTitle());
+
         TraktTools.addSeen(video, forceWatched);
         TraktTools.addToCollection(video);
 

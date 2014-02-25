@@ -30,9 +30,9 @@ import org.apache.log4j.PropertyConfigurator;
 
 public class YamjTraktApp {
 
-    private static final Logger logger = Logger.getLogger(YamjTraktApp.class);
-    private static final String logFilename = YamjTraktApp.class.getSimpleName();
-    private static final String propertiesFilename = "properties/log4j.properties";
+    private static final Logger LOG = Logger.getLogger(YamjTraktApp.class);
+    private static final String LOG_FILENAME = YamjTraktApp.class.getSimpleName();
+    private static final String PROP_FILENAME = "properties/log4j.properties";
     private static final String FILE_CREDENTIALS = "Credentials.xml";
     private static Credentials credentials;
     private static final Library LIBRARY = new Library();
@@ -42,18 +42,18 @@ public class YamjTraktApp {
 
     public static void main(String[] args) {
         credentials = new Credentials();
-        System.err.println("Log filename: " + logFilename);
-        System.setProperty("file.name", logFilename);
+        System.err.println("Log filename: " + LOG_FILENAME);
+        System.setProperty("file.name", LOG_FILENAME);
 
         // Load the properties file
-        PropertyConfigurator.configure(propertiesFilename);
+        PropertyConfigurator.configure(PROP_FILENAME);
 
-        logger.info("YAMJ Trakt.tv App");
-        logger.info("~~~~ ~~~~~~~~ ~~~");
-        logger.info("     Version: " + YamjTraktApp.class.getPackage().getSpecificationVersion());
-        logger.info("  Build date: " + YamjTraktApp.class.getPackage().getImplementationTitle());
-        logger.info("Java version: " + java.lang.System.getProperties().getProperty("java.version"));
-        logger.info("");
+        LOG.info("YAMJ Trakt.tv App");
+        LOG.info("~~~~ ~~~~~~~~ ~~~");
+        LOG.info("     Version: " + YamjTraktApp.class.getPackage().getSpecificationVersion());
+        LOG.info("  Build date: " + YamjTraktApp.class.getPackage().getImplementationTitle());
+        LOG.info("Java version: " + java.lang.System.getProperties().getProperty("java.version"));
+        LOG.info("");
 
         // Open the GUI
         MainWindow.windowMain(args);
@@ -83,10 +83,10 @@ public class YamjTraktApp {
                 props.storeToXML(os, "Credentials file written by YamjTraktTv", "UTF8");
                 return true;
             } catch (FileNotFoundException ex) {
-                logger.warn("File not found! " + ex.getMessage());
+                LOG.warn("File not found! " + ex.getMessage());
                 return false;
             } catch (IOException ex) {
-                logger.warn("Error writing file: " + ex.getMessage());
+                LOG.warn("Error writing file: " + ex.getMessage());
                 return false;
             } finally {
                 try {
@@ -94,12 +94,12 @@ public class YamjTraktApp {
                         os.close();
                     }
                 } catch (IOException ex) {
-                    logger.warn("Error closing file: " + ex.getMessage());
+                    LOG.warn("Error closing file: " + ex.getMessage());
                 }
             }
         } else {
-            logger.warn("Credentials are not valid!");
-            logger.warn("Not saving!");
+            LOG.warn("Credentials are not valid!");
+            LOG.warn("Not saving!");
             return false;
         }
     }
@@ -115,9 +115,9 @@ public class YamjTraktApp {
             credentials.setApikey(props.getProperty("apikey", ""));
 
         } catch (InvalidPropertiesFormatException ex) {
-            logger.warn("Properties file is not well formed, can not load: " + ex.getMessage());
+            LOG.warn("Properties file is not well formed, can not load: " + ex.getMessage());
         } catch (IOException ex) {
-            logger.warn("Unable to load properties file!" + ex.getMessage());
+            LOG.warn("Unable to load properties file!" + ex.getMessage());
         }
     }
 

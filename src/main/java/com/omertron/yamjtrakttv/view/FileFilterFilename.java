@@ -28,8 +28,8 @@ import java.io.File;
  */
 public class FileFilterFilename extends javax.swing.filechooser.FileFilter {
 
-    private String filename;
-    private String description;
+    private final String filename;
+    private final String description;
 
     /**
      * Create the custom filter with just the filename

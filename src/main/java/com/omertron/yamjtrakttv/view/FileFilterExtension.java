@@ -27,8 +27,8 @@ import java.io.File;
  */
 public class FileFilterExtension extends javax.swing.filechooser.FileFilter {
 
-    private String extension;
-    private String description;
+    private final String extension;
+    private final String description;
 
     /**
      * Create the custom filter with just the extension

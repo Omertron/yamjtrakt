@@ -20,14 +20,12 @@
 package com.omertron.yamjtrakttv.tools;
 
 import java.io.*;
-import java.util.logging.Level;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.ws.WebServiceException;
 import org.apache.log4j.Logger;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;

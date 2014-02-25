@@ -24,8 +24,8 @@ import java.util.concurrent.Callable;
 
 public class UpdateTrakt implements Runnable, Callable<Integer> {
 
-    private Video video;
-    private boolean forceWatched;
+    private final Video video;
+    private final boolean forceWatched;
 
     public UpdateTrakt(Video video, boolean forceWatched) {
         this.video = video;
@@ -49,10 +49,12 @@ public class UpdateTrakt implements Runnable, Callable<Integer> {
         return 1;
     }
 
+    @Override
     public void run() {
         process();
     }
 
+    @Override
     public Integer call() {
         return process();
     }

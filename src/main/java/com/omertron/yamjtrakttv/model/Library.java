@@ -26,7 +26,7 @@ import java.util.Map;
 public class Library {
 
     // List of the videos with the title as key
-    private Map<String, Video> videos;
+    private final Map<String, Video> videos;
     private String pathCompleteMovie;
     // Stats about the library
     private int numberMovies;

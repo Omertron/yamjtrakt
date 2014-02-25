@@ -35,7 +35,7 @@ public class YamjTraktApp {
     private static final String propertiesFilename = "properties/log4j.properties";
     private static final String FILE_CREDENTIALS = "Credentials.xml";
     private static Credentials credentials;
-    private static Library completeMoviesLibrary = new Library();
+    private static final Library LIBRARY = new Library();
     private static boolean completeMoviesLoaded = Boolean.FALSE;
     private static boolean completeMoviesProcessed = Boolean.FALSE;
     private static boolean markAllWatched = Boolean.FALSE;
@@ -60,7 +60,7 @@ public class YamjTraktApp {
     }
 
     public static Library getLibrary() {
-        return completeMoviesLibrary;
+        return LIBRARY;
     }
 
     public static Credentials getCredentials() {
@@ -90,7 +90,9 @@ public class YamjTraktApp {
                 return false;
             } finally {
                 try {
-                    os.close();
+                    if (os != null) {
+                        os.close();
+                    }
                 } catch (IOException ex) {
                     logger.warn("Error closing file: " + ex.getMessage());
                 }

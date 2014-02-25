@@ -40,7 +40,7 @@ public class TraktTools {
 
     private static final Logger logger = Logger.getLogger(TraktTools.class);
     private static final int DEFAULT_PLAYS = 1;
-    private static ServiceManager manager = new ServiceManager();
+    private static final ServiceManager MANAGER = new ServiceManager();
     private static MainWindow progressWindow;
 
     protected TraktTools() {
@@ -48,11 +48,11 @@ public class TraktTools {
     }
 
     public static boolean initialise(Credentials creds) {
-        manager.setAuthentication(creds.getUsername(), creds.getPassword());
-        manager.setApiKey(creds.getApikey());
+        MANAGER.setAuthentication(creds.getUsername(), creds.getPassword());
+        MANAGER.setApiKey(creds.getApikey());
 
         try {
-            Response response = manager.accountService().test().fire();
+            Response response = MANAGER.accountService().test().fire();
             if (response.status.equalsIgnoreCase("success")) {
                 logger.info("Authentication successful");
                 creds.setValid(true);
@@ -77,11 +77,11 @@ public class TraktTools {
         video.setSearchOnTrakt(Boolean.TRUE);
         try {
             if (StringUtils.isNotBlank(video.getId(Video.ID_IMDB))) {
-                movie = manager.movieService().summary(video.getId(Video.ID_IMDB)).fire();
+                movie = MANAGER.movieService().summary(video.getId(Video.ID_IMDB)).fire();
             } else if (StringUtils.isNotBlank(video.getId(Video.ID_THEMOVIEDB))) {
-                movie = manager.movieService().summary(video.getId(Video.ID_THEMOVIEDB)).fire();
+                movie = MANAGER.movieService().summary(video.getId(Video.ID_THEMOVIEDB)).fire();
             } else {
-                movie = manager.movieService().summary(video.getTitle()).fire();
+                movie = MANAGER.movieService().summary(video.getTitle()).fire();
                 video.addId(Video.ID_IMDB, movie.imdbId);
                 video.addId(Video.ID_THEMOVIEDB, movie.tmdbId);
             }
@@ -104,9 +104,9 @@ public class TraktTools {
         video.setSearchOnTrakt(Boolean.TRUE);
         try {
             if (StringUtils.isNumeric(video.getId(Video.ID_TVDB))) {
-                tvshow = manager.showService().summary(video.getId(Video.ID_TVDB)).fire();
+                tvshow = MANAGER.showService().summary(video.getId(Video.ID_TVDB)).fire();
             } else {
-                tvshow = manager.showService().summary(video.getTitle()).fire();
+                tvshow = MANAGER.showService().summary(video.getTitle()).fire();
                 video.addId(Video.ID_TVDB, tvshow.tvdbId);
                 video.addId(Video.ID_IMDB, tvshow.imdbId);
             }
@@ -129,9 +129,9 @@ public class TraktTools {
         episode.setSearchOnTrakt(Boolean.TRUE);
         try {
             if (StringUtils.isNumeric(video.getId(Video.ID_TVDB))) {
-                tvEntity = manager.showService().episodeSummary(video.getId(Video.ID_TVDB), episode.getSeason(), episode.getEpisode()).fire();
+                tvEntity = MANAGER.showService().episodeSummary(video.getId(Video.ID_TVDB), episode.getSeason(), episode.getEpisode()).fire();
             } else {
-                tvEntity = manager.showService().episodeSummary(video.getTitle(), episode.getSeason(), episode.getEpisode()).fire();
+                tvEntity = MANAGER.showService().episodeSummary(video.getTitle(), episode.getSeason(), episode.getEpisode()).fire();
                 video.addId(Video.ID_TVDB, tvEntity.show.tvdbId);
                 video.addId(Video.ID_IMDB, tvEntity.show.imdbId);
             }
@@ -177,7 +177,7 @@ public class TraktTools {
     }
 
     private static void addMovieSeen(Video video, boolean forceWatched) {
-        SeenBuilder sb = manager.movieService().seen();
+        SeenBuilder sb = MANAGER.movieService().seen();
         if (StringUtils.isNotBlank(video.getId(Video.ID_THEMOVIEDB))) {
             int tmdbId = Integer.parseInt(video.getId(Video.ID_THEMOVIEDB));
             sb.movie(tmdbId, DEFAULT_PLAYS, video.getWatchedDate());
@@ -192,7 +192,7 @@ public class TraktTools {
     }
 
     private static void addShowSeen(Video video, boolean forceWatched) {
-        EpisodeSeenBuilder esb = manager.showService().episodeSeen(Integer.parseInt(video.getId(Video.ID_TVDB)));
+        EpisodeSeenBuilder esb = MANAGER.showService().episodeSeen(Integer.parseInt(video.getId(Video.ID_TVDB)));
         for (Episode ep : video.getEpisodes()) {
             if (ep.isWatched() || forceWatched) {
                 esb.episode(ep.getSeason(), ep.getEpisode()).fire();
@@ -218,7 +218,7 @@ public class TraktTools {
         }
 
         if (video.isFoundOnTrakt()) {
-            LibraryBuilder lb = manager.movieService().library();
+            LibraryBuilder lb = MANAGER.movieService().library();
             if (StringUtils.isNotBlank(video.getId(Video.ID_THEMOVIEDB))) {
                 int tmdbId = Integer.parseInt(video.getId(Video.ID_THEMOVIEDB));
                 lb.movie(tmdbId, DEFAULT_PLAYS, video.getWatchedDate());
@@ -252,11 +252,11 @@ public class TraktTools {
             EpisodeLibraryBuilder elb;
 
             if (StringUtils.isNotBlank(video.getId(Video.ID_TVDB))) {
-                elb = manager.showService().episodeLibrary(Integer.parseInt(video.getId(Video.ID_TVDB)));
+                elb = MANAGER.showService().episodeLibrary(Integer.parseInt(video.getId(Video.ID_TVDB)));
             } else if (StringUtils.isNotBlank(video.getId(Video.ID_IMDB))) {
-                elb = manager.showService().episodeLibrary(video.getId(Video.ID_IMDB));
+                elb = MANAGER.showService().episodeLibrary(video.getId(Video.ID_IMDB));
             } else {
-                elb = manager.showService().episodeLibrary(video.getTitle(), video.getYear());
+                elb = MANAGER.showService().episodeLibrary(video.getTitle(), video.getYear());
             }
 
 

@@ -57,7 +57,6 @@ public class ProgressProcessor {
      *
      * @param cmLibrary
      * @param completeMoviesPath
-     * @return
      */
     public static void parseCompleteMovies(final Library cmLibrary, final String completeMoviesPath) {
         File cm = new File(completeMoviesPath);

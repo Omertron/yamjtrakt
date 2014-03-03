@@ -21,11 +21,15 @@ package com.omertron.yamjtrakttv.model;
 
 import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
+/**
+ * Video class
+ *
+ * @author Stuart
+ */
 public class Video {
-    /*
-     * Video class
-     */
 
     // Static ID descriptions
     public static final String ID_IMDB = "imdb";
@@ -180,6 +184,6 @@ public class Video {
 
     @Override
     public String toString() {
-        return "Video{" + "title=" + title + ", year=" + year + ", type=" + type + ", idMap=" + idMap + ", watched=" + watched + ", watchedDate=" + watchedDate + ", searchOnTrakt=" + searchOnTrakt + ", foundOnTrakt=" + foundOnTrakt + ", summaryInfo=" + summaryInfo + ", episodes=" + episodes + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

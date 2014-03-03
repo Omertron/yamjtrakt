@@ -32,16 +32,15 @@ import org.xml.sax.SAXException;
 
 /**
  * Generic set of routines to process the DOM model data
+ *
  * @author Stuart.Boston
  *
  */
 public class DOMHelper {
-    private static final Logger logger = Logger.getLogger(DOMHelper.class);
+
+    private static final Logger LOG = Logger.getLogger(DOMHelper.class);
 
     private static final String YES = "yes";
-    private static final String ENCODING = "UTF-8";
-    private static final int RETRY_COUNT = 5;
-    private static final int RETRY_TIME = 250;  // Milliseconds to retry
 
     // Hide the constructor
     protected DOMHelper() {
@@ -51,6 +50,7 @@ public class DOMHelper {
 
     /**
      * Gets the string value of the tag element name passed
+     *
      * @param element
      * @param tagName
      * @return
@@ -69,6 +69,7 @@ public class DOMHelper {
 
     /**
      * Get a DOM document from the supplied URL
+     *
      * @param file
      * @return
      */
@@ -81,14 +82,14 @@ public class DOMHelper {
             doc = db.parse(file);
             doc.getDocumentElement().normalize();
         } catch (SAXException ex) {
-            logger.error("Unable to parse " + file.getAbsolutePath());
-            logger.error(ex.getMessage());
+            LOG.error("Unable to parse " + file.getAbsolutePath());
+            LOG.error(ex.getMessage());
         } catch (IOException ex) {
-            logger.error("Unable to parse " + file.getAbsolutePath());
-            logger.error(ex.getMessage());
+            LOG.error("Unable to parse " + file.getAbsolutePath());
+            LOG.error(ex.getMessage());
         } catch (ParserConfigurationException ex) {
-            logger.error("Unable to parse " + file.getAbsolutePath());
-            logger.error(ex.getMessage());
+            LOG.error("Unable to parse " + file.getAbsolutePath());
+            LOG.error(ex.getMessage());
         }
 
         return doc;
@@ -96,6 +97,7 @@ public class DOMHelper {
 
     /**
      * Convert a DOM document to a string
+     *
      * @param doc
      * @return
      * @throws TransformerException
@@ -117,7 +119,8 @@ public class DOMHelper {
 
     /**
      * Write the Document out to a file using nice formatting
-     * @param doc   The document to save
+     *
+     * @param doc The document to save
      * @param localFile The file to write to
      * @return
      */
@@ -130,18 +133,19 @@ public class DOMHelper {
             trans.transform(new DOMSource(doc), new StreamResult(new File(localFile)));
             return true;
         } catch (TransformerConfigurationException error) {
-            logger.warn("Error writing the document to "+ localFile);
-            logger.warn("Message: "+ error.getMessage());
+            LOG.warn("Error writing the document to " + localFile);
+            LOG.warn("Message: " + error.getMessage());
             return false;
         } catch (TransformerException error) {
-            logger.warn("Error writing the document to "+ localFile);
-            logger.warn("Message: "+ error.getMessage());
+            LOG.warn("Error writing the document to " + localFile);
+            LOG.warn("Message: " + error.getMessage());
             return false;
         }
     }
 
     /**
      * Add a child element to a parent element
+     *
      * @param doc
      * @param parentElement
      * @param elementName
@@ -156,11 +160,12 @@ public class DOMHelper {
 
     /**
      * Wait for a few milliseconds
+     *
      * @param milliseconds
      */
-    private static void waiting (int milliseconds){
+    private static void waiting(int milliseconds) {
         long t0, t1;
-        t0 =  System.currentTimeMillis();
+        t0 = System.currentTimeMillis();
         do {
             t1 = System.currentTimeMillis();
         } while ((t1 - t0) < milliseconds);

@@ -23,6 +23,8 @@ import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.TvEntity;
 import com.jakewharton.trakt.entities.TvShow;
 import com.jakewharton.trakt.enumerations.Rating;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class SummaryInfo {
 
@@ -102,7 +104,7 @@ public class SummaryInfo {
 
     @Override
     public String toString() {
-        return "SummaryInfo{" + "rating=" + rating + ", inWatchlist=" + inWatchlist + ", inCollection=" + inCollection + ", watched=" + watched + ", plays=" + plays + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 
     public void addSummaryInfo(Movie movie) {

@@ -20,6 +20,8 @@
 package com.omertron.yamjtrakttv.model;
 
 import java.util.Date;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class Episode {
 
@@ -117,6 +119,6 @@ public class Episode {
 
     @Override
     public String toString() {
-        return "Episode{" + "season=" + season + ", episode=" + episode + ", watched=" + watched + ", summaryInfo=" + summaryInfo + ", searchOnTrakt=" + searchOnTrakt + ", foundOnTrakt=" + foundOnTrakt + '}';
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
 }

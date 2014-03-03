@@ -32,8 +32,6 @@ import org.w3c.dom.NodeList;
 
 public class CompleteMoviesTools {
 
-    private static final Logger logger = Logger.getLogger(CompleteMoviesTools.class);
-
     /**
      * Parse the video element and extract the information from it.
      *
@@ -79,8 +77,7 @@ public class CompleteMoviesTools {
     }
 
     /**
-     * Get the season and episode information from the files section for TV
-     * Shows
+     * Get the season and episode information from the files section for TV Shows
      *
      * @param eVideo
      * @return

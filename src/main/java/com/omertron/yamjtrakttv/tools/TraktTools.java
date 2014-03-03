@@ -38,7 +38,7 @@ import org.apache.log4j.Logger;
 
 public class TraktTools {
 
-    private static final Logger logger = Logger.getLogger(TraktTools.class);
+    private static final Logger LOG = Logger.getLogger(TraktTools.class);
     private static final int DEFAULT_PLAYS = 1;
     private static final ServiceManager MANAGER = new ServiceManager();
     private static MainWindow progressWindow;
@@ -54,17 +54,17 @@ public class TraktTools {
         try {
             Response response = MANAGER.accountService().test().fire();
             if (response.status.equalsIgnoreCase("success")) {
-                logger.info("Authentication successful");
+                LOG.info("Authentication successful");
                 creds.setValid(true);
                 creds.setValidMessage("Authentication successful");
                 return true;
             }
         } catch (TraktException ex) {
-            logger.error("Failure message: " + ex.getMessage());
+            LOG.error("Failure message: " + ex.getMessage());
             creds.setValid(false);
             creds.setValidMessage(ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            logger.error("Failure message: " + ex.getMessage());
+            LOG.error("Failure message: " + ex.getMessage());
             creds.setValid(false);
             creds.setValidMessage(ex.getMessage());
         }
@@ -86,7 +86,7 @@ public class TraktTools {
                 video.addId(Video.ID_THEMOVIEDB, movie.tmdbId);
             }
         } catch (TraktException ex) {
-            logger.debug("Error getting information for movie: " + video.getTitle() + " - Error: " + ex.getMessage());
+            LOG.debug("Error getting information for movie: " + video.getTitle() + " - Error: " + ex.getMessage());
             video.setFoundOnTrakt(Boolean.FALSE);
             movie = null;
         }
@@ -111,7 +111,7 @@ public class TraktTools {
                 video.addId(Video.ID_IMDB, tvshow.imdbId);
             }
         } catch (TraktException ex) {
-            logger.debug("Error getting information for TV show: " + video.getTitle() + " - Error: " + ex.getMessage());
+            LOG.debug("Error getting information for TV show: " + video.getTitle() + " - Error: " + ex.getMessage());
             video.setFoundOnTrakt(Boolean.FALSE);
             tvshow = null;
         }
@@ -136,7 +136,7 @@ public class TraktTools {
                 video.addId(Video.ID_IMDB, tvEntity.show.imdbId);
             }
         } catch (TraktException ex) {
-            logger.debug("Error getting information for TV show: " + video.getTitle() + " Episode: " + episode.getEpisode() + " - Error: " + ex.getMessage());
+            LOG.debug("Error getting information for TV show: " + video.getTitle() + " Episode: " + episode.getEpisode() + " - Error: " + ex.getMessage());
             episode.setFoundOnTrakt(Boolean.FALSE);
             tvEntity = null;
         }
@@ -184,11 +184,11 @@ public class TraktTools {
         } else if (StringUtils.isNotBlank(video.getId(Video.ID_IMDB))) {
             sb.movie(video.getId(Video.ID_IMDB), DEFAULT_PLAYS, video.getWatchedDate());
         } else {
-            logger.debug("No id found for " + video.getTitle());
+            LOG.debug("No id found for " + video.getTitle());
             return;
         }
         sb.fire();
-        logger.info("Updated seen for " + video.getTitle());
+        LOG.info("Updated seen for " + video.getTitle());
     }
 
     private static void addShowSeen(Video video, boolean forceWatched) {
@@ -231,16 +231,16 @@ public class TraktTools {
             try {
                 lb.fire();
             } catch (TraktException ex) {
-                logger.error("Failed to add " + video.getTitle() + " to collection: " + ex.getMessage());
+                LOG.error("Failed to add " + video.getTitle() + " to collection: " + ex.getMessage());
             }
         } else {
-            logger.debug(video.getTitle() + " was not found on trakt.tv");
+            LOG.debug(video.getTitle() + " was not found on trakt.tv");
         }
     }
 
     private static void addShowToCollection(Video video) {
         if (video.getEpisodes().isEmpty()) {
-            logger.warn("No episodes found for " + video.getTitle());
+            LOG.warn("No episodes found for " + video.getTitle());
             return;
         }
 
@@ -267,10 +267,10 @@ public class TraktTools {
             try {
                 elb.fire();
             } catch (TraktException ex) {
-                logger.error("Failed to add " + video.getTitle() + " to collection: " + ex.getMessage());
+                LOG.error("Failed to add " + video.getTitle() + " to collection: " + ex.getMessage());
             }
         } else {
-            logger.debug(video.getTitle() + " was not found on trakt.tv");
+            LOG.debug(video.getTitle() + " was not found on trakt.tv");
         }
 
     }

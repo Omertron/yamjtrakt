@@ -22,7 +22,11 @@ package com.omertron.yamjtrakttv;
 import com.omertron.yamjtrakttv.model.Credentials;
 import com.omertron.yamjtrakttv.model.Library;
 import com.omertron.yamjtrakttv.view.MainWindow;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Properties;
 import org.apache.log4j.Logger;
@@ -38,7 +42,8 @@ public class YamjTraktApp {
     private static final Library LIBRARY = new Library();
     private static boolean completeMoviesLoaded = Boolean.FALSE;
     private static boolean completeMoviesProcessed = Boolean.FALSE;
-    private static boolean markAllWatched = Boolean.FALSE;
+    private static boolean markAllWatched = Boolean.TRUE;
+    private static boolean slowerUpdate = Boolean.FALSE;
 
     public static void main(String[] args) {
         credentials = new Credentials();
@@ -143,5 +148,13 @@ public class YamjTraktApp {
 
     public static void setMarkAllWatched(boolean markAllWatched) {
         YamjTraktApp.markAllWatched = markAllWatched;
+    }
+
+    public static boolean isSlowerUpdate() {
+        return slowerUpdate;
+    }
+
+    public static void setSlowerUpdate(boolean slowerUpdate) {
+        YamjTraktApp.slowerUpdate = slowerUpdate;
     }
 }

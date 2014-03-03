@@ -37,7 +37,8 @@ import org.w3c.dom.NodeList;
 
 public class ProgressProcessor {
 
-    private static final Logger logger = Logger.getLogger(ProgressProcessor.class);
+    private static final Logger LOG = Logger.getLogger(ProgressProcessor.class);
+    private static final long SLOW_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(1);
     private static MainWindow progressWindow;
 
     public static void setProgressWindow(MainWindow newProgressWindow) {
@@ -51,8 +52,8 @@ public class ProgressProcessor {
     }
 
     /**
-     * Process a YAMJ CompleteMovies.xml file and store the contents in the
-     * library
+     * Process a YAMJ CompleteMovies.xml file and store the contents in the library
+     *
      * http://stackoverflow.com/questions/2710712/output-to-jtextarea-in-realtime
      *
      * @param cmLibrary
@@ -62,19 +63,19 @@ public class ProgressProcessor {
         File cm = new File(completeMoviesPath);
 
         if (!cm.exists()) {
-            logger.error("Failed to load 'CompleteMovies.xml' from: " + completeMoviesPath);
+            LOG.error("Failed to load 'CompleteMovies.xml' from: " + completeMoviesPath);
             return;
         }
 
         Document cmDoc = DOMHelper.getEventDocFromUrl(cm);
 
         if (cmDoc != null) {
-            logger.info("Loaded CompleteMovies from " + completeMoviesPath);
+            LOG.info("Loaded CompleteMovies from " + completeMoviesPath);
             progressWindow.progressAddText("Loaded CompleteMovies from " + completeMoviesPath);
 
             final NodeList nlVideos = cmDoc.getElementsByTagName("movies");
             if (nlVideos.getLength() > 0) {
-                logger.info("Found " + nlVideos.getLength() + " videos to process");
+                LOG.info("Found " + nlVideos.getLength() + " videos to process");
                 progressWindow.progressAddText("Found " + nlVideos.getLength() + " videos to process");
                 progressWindow.progressBarLimits(1, nlVideos.getLength());
 
@@ -95,20 +96,20 @@ public class ProgressProcessor {
                         }
                         progressWindow.progressBarProgress(nlVideos.getLength());
 
-                        logger.info("Finished processing " + completeMoviesPath);
+                        LOG.info("Finished processing " + completeMoviesPath);
                         progressWindow.progressAddText("Finished processing " + completeMoviesPath);
-                        logger.info(cmLibrary.getStats());
+                        LOG.info(cmLibrary.getStats());
                         progressWindow.progressAddText(cmLibrary.getStats());
 
                     }
                 }).start();
             } else {
-                logger.info("No videos were found in " + completeMoviesPath);
+                LOG.info("No videos were found in " + completeMoviesPath);
                 progressWindow.progressAddText("No videos were found in " + completeMoviesPath);
             }
 
         } else {
-            logger.info("Unable to process " + completeMoviesPath);
+            LOG.info("Unable to process " + completeMoviesPath);
             progressWindow.progressAddText("Unable to process " + completeMoviesPath);
         }
 
@@ -129,7 +130,7 @@ public class ProgressProcessor {
             public void run() {
                 // This date will be used to mark videos as watched if needed
                 Date currentDate = new Date();
-                logger.info("Will use the date " + currentDate.toString() + " for videos if required");
+                LOG.info("Will use the date " + currentDate.toString() + " for videos if required");
 
                 Map<String, Video> libVids = YamjTraktApp.getLibrary().getVideos();
 
@@ -149,10 +150,13 @@ public class ProgressProcessor {
                 for (Future<Integer> future : list) {
                     try {
                         count += future.get();
+                        if (YamjTraktApp.isSlowerUpdate()) {
+                            Thread.sleep(SLOW_UPDATE_DELAY);
+                        }
                     } catch (InterruptedException ex) {
-                        logger.warn("InterruptedException: " + ex);
+                        LOG.warn("InterruptedException: " + ex);
                     } catch (ExecutionException ex) {
-                        logger.warn("ExecutionException: " + ex);
+                        LOG.warn("ExecutionException: " + ex);
                     }
                     progressWindow.progressBarProgress(count);
                 }
@@ -160,7 +164,7 @@ public class ProgressProcessor {
                 exec.shutdown();
                 while (!exec.isTerminated()) {
                     try {
-                        logger.debug("Waiting for threads to finish...");
+                        LOG.debug("Waiting for threads to finish...");
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         // If we get interrupted it doesn't matter

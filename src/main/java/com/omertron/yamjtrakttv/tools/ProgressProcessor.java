@@ -25,10 +25,14 @@ import com.omertron.yamjtrakttv.model.Video;
 import com.omertron.yamjtrakttv.view.MainWindow;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -38,7 +42,7 @@ import org.w3c.dom.NodeList;
 public class ProgressProcessor {
 
     private static final Logger LOG = Logger.getLogger(ProgressProcessor.class);
-    private static final long SLOW_UPDATE_DELAY = TimeUnit.SECONDS.toMillis(1);
+    private static final int SLOW_UPDATE_DELAY_SECONDS = 1;
     private static MainWindow progressWindow;
 
     public static void setProgressWindow(MainWindow newProgressWindow) {
@@ -128,17 +132,20 @@ public class ProgressProcessor {
 
             @Override
             public void run() {
-                // This date will be used to mark videos as watched if needed
-                Date currentDate = new Date();
-                LOG.info("Will use the date " + currentDate.toString() + " for videos if required");
-
                 Map<String, Video> libVids = YamjTraktApp.getLibrary().getVideos();
 
                 ExecutorService exec = Executors.newFixedThreadPool(numberOfThreads);
                 List<Future<Integer>> list = new ArrayList<Future<Integer>>();
 
+                int delay;
+                if (YamjTraktApp.isSlowerUpdate()) {
+                    delay = SLOW_UPDATE_DELAY_SECONDS;
+                } else {
+                    delay = 0;
+                }
+
                 for (String videoTitle : libVids.keySet()) {
-                    Callable<Integer> worker = new UpdateTrakt(libVids.get(videoTitle), YamjTraktApp.isMarkAllWatched());
+                    Callable<Integer> worker = new UpdateTrakt(libVids.get(videoTitle), YamjTraktApp.isMarkAllWatched(),delay);
                     Future<Integer> submit = exec.submit(worker);
                     list.add(submit);
                 }
@@ -150,9 +157,6 @@ public class ProgressProcessor {
                 for (Future<Integer> future : list) {
                     try {
                         count += future.get();
-                        if (YamjTraktApp.isSlowerUpdate()) {
-                            Thread.sleep(SLOW_UPDATE_DELAY);
-                        }
                     } catch (InterruptedException ex) {
                         LOG.warn("InterruptedException: " + ex);
                     } catch (ExecutionException ex) {
@@ -165,7 +169,7 @@ public class ProgressProcessor {
                 while (!exec.isTerminated()) {
                     try {
                         LOG.debug("Waiting for threads to finish...");
-                        Thread.sleep(1000);
+                        TimeUnit.SECONDS.sleep(1);
                     } catch (InterruptedException ex) {
                         // If we get interrupted it doesn't matter
                     }

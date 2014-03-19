@@ -13,7 +13,7 @@
 
     <groupId>com.omertron</groupId>
     <artifactId>YamjTraktTv</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.3</version>
     <packaging>jar</packaging>
 
     <name>YamjTraktTv</name>
@@ -163,6 +163,9 @@
                 <version>2.4</version>
                 <configuration>
                     <archive>
+                        <manifest>
+                            <mainClass>com.omertron.yamjtrakttv.YamjTraktApp</mainClass>
+                        </manifest>
                         <manifestEntries>
                             <Specification-Title>${project.name}</Specification-Title>
                             <Specification-Version>${project.version}</Specification-Version>
@@ -254,6 +257,14 @@
                         <manifest>
                             <mainClass>com.omertron.yamjtrakttv.YamjTraktApp</mainClass>
                         </manifest>
+                        <manifestEntries>
+                            <mainClass>com.omertron.yamjtrakttv.YamjTraktApp</mainClass>
+                            <Specification-Title>${project.name}</Specification-Title>
+                            <Specification-Version>${project.version}</Specification-Version>
+                            <Implementation-Version>${buildNumber}</Implementation-Version>
+                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                            <Implementation-Title>${timestamp}</Implementation-Title>
+                        </manifestEntries>
                     </archive>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>

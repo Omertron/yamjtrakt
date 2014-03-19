@@ -137,15 +137,8 @@ public class ProgressProcessor {
                 ExecutorService exec = Executors.newFixedThreadPool(numberOfThreads);
                 List<Future<Integer>> list = new ArrayList<Future<Integer>>();
 
-                int delay;
-                if (YamjTraktApp.isSlowerUpdate()) {
-                    delay = SLOW_UPDATE_DELAY_SECONDS;
-                } else {
-                    delay = 0;
-                }
-
                 for (String videoTitle : libVids.keySet()) {
-                    Callable<Integer> worker = new UpdateTrakt(libVids.get(videoTitle), YamjTraktApp.isMarkAllWatched(),delay);
+                    Callable<Integer> worker = new UpdateTrakt(libVids.get(videoTitle), YamjTraktApp.isMarkAllWatched());
                     Future<Integer> submit = exec.submit(worker);
                     list.add(submit);
                 }

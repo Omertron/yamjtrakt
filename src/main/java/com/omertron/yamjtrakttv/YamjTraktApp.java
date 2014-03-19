@@ -43,7 +43,6 @@ public class YamjTraktApp {
     private static boolean completeMoviesLoaded = Boolean.FALSE;
     private static boolean completeMoviesProcessed = Boolean.FALSE;
     private static boolean markAllWatched = Boolean.TRUE;
-    private static boolean slowerUpdate = Boolean.FALSE;
 
     public static void main(String[] args) {
         credentials = new Credentials();
@@ -148,13 +147,5 @@ public class YamjTraktApp {
 
     public static void setMarkAllWatched(boolean markAllWatched) {
         YamjTraktApp.markAllWatched = markAllWatched;
-    }
-
-    public static boolean isSlowerUpdate() {
-        return slowerUpdate;
-    }
-
-    public static void setSlowerUpdate(boolean slowerUpdate) {
-        YamjTraktApp.slowerUpdate = slowerUpdate;
     }
 }

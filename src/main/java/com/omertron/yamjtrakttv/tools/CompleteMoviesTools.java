@@ -24,6 +24,7 @@ import com.omertron.yamjtrakttv.model.Video;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Element;
@@ -31,6 +32,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class CompleteMoviesTools {
+
+    private static final Logger LOG = Logger.getLogger(CompleteMoviesTools.class);
+    private static final int DEFAULT_DELAY = 1;
 
     /**
      * Parse the video element and extract the information from it.
@@ -46,10 +50,17 @@ public class CompleteMoviesTools {
         v.setWatched(Boolean.parseBoolean(DOMHelper.getValueFromElement(eVideo, "watched")));
 
         String stringDate = DOMHelper.getValueFromElement(eVideo, "watchedDate");
-        if (StringUtils.isNumeric(stringDate)) {
+        if (StringUtils.isNumeric(stringDate) && !"0".equals(stringDate)) {
             v.setWatchedDate(new Date(Long.parseLong(stringDate)));
         } else {
+            LOG.debug("Invalid watched date '" + stringDate + "' using current date");
             v.setWatchedDate(new Date());
+            // Because the date was set by us, let's add a small (1 second) delay to ensure that we don't get identical watched dates
+            try {
+                TimeUnit.SECONDS.sleep(DEFAULT_DELAY);
+            } catch (InterruptedException ex) {
+                // Don't care if we are interrupted or not.
+            }
         }
 
         NodeList nlID = eVideo.getElementsByTagName("id");
@@ -77,7 +88,8 @@ public class CompleteMoviesTools {
     }
 
     /**
-     * Get the season and episode information from the files section for TV Shows
+     * Get the season and episode information from the files section for TV
+     * Shows
      *
      * @param eVideo
      * @return

@@ -21,34 +21,19 @@ package com.omertron.yamjtrakttv.tools;
 
 import com.omertron.yamjtrakttv.model.Video;
 import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
 
 public class UpdateTrakt implements Runnable, Callable<Integer> {
 
     private final Video video;
     private final boolean forceWatched;
-    private int delay;
-
-    public UpdateTrakt(Video video, boolean forceWatched, int delay) {
-        this.video = video;
-        this.forceWatched = forceWatched;
-        this.delay = delay;
-    }
 
     public UpdateTrakt(Video video, boolean forceWatched) {
-        this(video, Boolean.FALSE, 0);
+        this.video = video;
+        this.forceWatched = forceWatched;
     }
 
     public UpdateTrakt(Video video) {
-        this(video, Boolean.FALSE, 0);
-    }
-
-    public int getDelay() {
-        return delay;
-    }
-
-    public void setDelay(int delay) {
-        this.delay = delay;
+        this(video, Boolean.FALSE);
     }
 
     private int process() {
@@ -56,14 +41,6 @@ public class UpdateTrakt implements Runnable, Callable<Integer> {
 
         TraktTools.addSeen(video, forceWatched);
         TraktTools.addToCollection(video);
-
-        if (delay > 0) {
-            try {
-                TimeUnit.SECONDS.sleep(delay);
-            } catch (InterruptedException ex) {
-                // Don't care if we are interrupted or not.
-            }
-        }
 
         ProgressProcessor.progressMessage("Finished " + video.getType() + " - " + video.getTitle());
 

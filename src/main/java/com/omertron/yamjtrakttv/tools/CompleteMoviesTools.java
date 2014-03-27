@@ -95,7 +95,7 @@ public class CompleteMoviesTools {
      * @return
      */
     private static List<Episode> parseTvFiles(Element eVideo) {
-        List<Episode> episodes = new ArrayList<Episode>();
+        List<Episode> episodes = new ArrayList<>();
 
         NodeList nlFile = eVideo.getElementsByTagName("file");
         if (nlFile.getLength() > 0) {

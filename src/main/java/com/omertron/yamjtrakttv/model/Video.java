@@ -19,7 +19,11 @@
  */
 package com.omertron.yamjtrakttv.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -39,7 +43,7 @@ public class Video {
     private String title = "";
     private int year = 0;
     private String type = "";
-    private Map<String, String> idMap = new HashMap<String, String>();
+    private Map<String, String> idMap = new HashMap<>();
     private boolean watched = Boolean.FALSE;
     private boolean watchedEpsidoes = Boolean.FALSE;
     private Date watchedDate = null;
@@ -48,7 +52,7 @@ public class Video {
     //Summary information from Trakt.tv
     private SummaryInfo summaryInfo = new SummaryInfo();
     // Only for TV Shows
-    private List<Episode> episodes = new ArrayList<Episode>();
+    private List<Episode> episodes = new ArrayList<>();
 
     public String getTitle() {
         return title;

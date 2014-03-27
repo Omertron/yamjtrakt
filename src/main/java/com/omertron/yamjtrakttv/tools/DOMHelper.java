@@ -19,15 +19,25 @@
  */
 package com.omertron.yamjtrakttv.tools;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import org.apache.log4j.Logger;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
@@ -81,13 +91,7 @@ public class DOMHelper {
             DocumentBuilder db = dbf.newDocumentBuilder();
             doc = db.parse(file);
             doc.getDocumentElement().normalize();
-        } catch (SAXException ex) {
-            LOG.error("Unable to parse " + file.getAbsolutePath());
-            LOG.error(ex.getMessage());
-        } catch (IOException ex) {
-            LOG.error("Unable to parse " + file.getAbsolutePath());
-            LOG.error(ex.getMessage());
-        } catch (ParserConfigurationException ex) {
+        } catch (SAXException | IOException | ParserConfigurationException ex) {
             LOG.error("Unable to parse " + file.getAbsolutePath());
             LOG.error(ex.getMessage());
         }

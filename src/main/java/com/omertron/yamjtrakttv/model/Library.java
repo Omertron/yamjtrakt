@@ -36,7 +36,7 @@ public class Library {
     DecimalFormat numberFormat = new DecimalFormat("#,##0");
 
     public Library() {
-        videos = new HashMap<String, Video>();
+        videos = new HashMap<>();
         pathCompleteMovie = "";
         numberMovies = 0;
         numberTV = 0;

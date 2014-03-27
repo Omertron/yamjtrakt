@@ -59,11 +59,7 @@ public class TraktTools {
                 creds.setValidMessage("Authentication successful");
                 return true;
             }
-        } catch (TraktException ex) {
-            LOG.error("Failure message: " + ex.getMessage());
-            creds.setValid(false);
-            creds.setValidMessage(ex.getMessage());
-        } catch (IllegalArgumentException ex) {
+        } catch (TraktException | IllegalArgumentException ex) {
             LOG.error("Failure message: " + ex.getMessage());
             creds.setValid(false);
             creds.setValidMessage(ex.getMessage());

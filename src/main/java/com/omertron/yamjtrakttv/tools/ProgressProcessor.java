@@ -42,7 +42,6 @@ import org.w3c.dom.NodeList;
 public class ProgressProcessor {
 
     private static final Logger LOG = Logger.getLogger(ProgressProcessor.class);
-    private static final int SLOW_UPDATE_DELAY_SECONDS = 1;
     private static MainWindow progressWindow;
 
     public static void setProgressWindow(MainWindow newProgressWindow) {
@@ -135,7 +134,7 @@ public class ProgressProcessor {
                 Map<String, Video> libVids = YamjTraktApp.getLibrary().getVideos();
 
                 ExecutorService exec = Executors.newFixedThreadPool(numberOfThreads);
-                List<Future<Integer>> list = new ArrayList<Future<Integer>>();
+                List<Future<Integer>> list = new ArrayList<>();
 
                 for (String videoTitle : libVids.keySet()) {
                     Callable<Integer> worker = new UpdateTrakt(libVids.get(videoTitle), YamjTraktApp.isMarkAllWatched());

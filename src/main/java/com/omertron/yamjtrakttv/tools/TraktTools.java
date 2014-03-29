@@ -25,15 +25,22 @@ import com.jakewharton.trakt.entities.Movie;
 import com.jakewharton.trakt.entities.Response;
 import com.jakewharton.trakt.entities.TvEntity;
 import com.jakewharton.trakt.entities.TvShow;
+import com.jakewharton.trakt.entities.TvShowSeason;
+import com.jakewharton.trakt.services.MovieService;
 import com.jakewharton.trakt.services.MovieService.LibraryBuilder;
 import com.jakewharton.trakt.services.MovieService.SeenBuilder;
+import com.jakewharton.trakt.services.ShowService;
 import com.jakewharton.trakt.services.ShowService.EpisodeLibraryBuilder;
 import com.jakewharton.trakt.services.ShowService.EpisodeSeenBuilder;
 import com.omertron.yamjtrakttv.model.Credentials;
 import com.omertron.yamjtrakttv.model.Episode;
 import com.omertron.yamjtrakttv.model.Video;
 import com.omertron.yamjtrakttv.view.MainWindow;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.log4j.Logger;
 
 public class TraktTools {
@@ -255,7 +262,6 @@ public class TraktTools {
                 elb = MANAGER.showService().episodeLibrary(video.getTitle(), video.getYear());
             }
 
-
             for (Episode episode : video.getEpisodes()) {
                 elb.episode(episode.getSeason(), episode.getEpisode());
             }
@@ -275,5 +281,89 @@ public class TraktTools {
         progressWindow = newProgressWindow;
         progressWindow.progestSetTitle("Processing videos on Trakt.tv");
         progressWindow.progressClearText();
+    }
+
+    /**
+     * Get all movies associated with the account
+     *
+     * @param credentials
+     * @return
+     */
+    public static List<Movie> getAllMovies(Credentials credentials) {
+        LOG.debug("Getting movie list for user '" + credentials.getUsername() + "'");
+        List<Movie> movies = MANAGER.userService().libraryMoviesAll(credentials.getUsername()).fire();
+        LOG.info("Found " + movies.size() + " movies in the collection for '" + credentials.getUsername() + "'");
+        return movies;
+    }
+
+    /**
+     * Remove a movie from the account completely
+     *
+     * @param movies
+     */
+    public static void removeMovies(List<Movie> movies) {
+        MovieService service = MANAGER.movieService();
+
+        for (Movie m : movies) {
+            LOG.debug("Removing '" + m.title + "' (" + m.imdbId + ")");
+            try {
+                service.unlibrary().movie(m.imdbId).fire();
+                service.unseen().movie(m.imdbId).fire();
+                service.unwatchlist().movie(m.imdbId).fire();
+            } catch (TraktException ex) {
+                LOG.info("Exception: " + ex.getMessage());
+            }
+        }
+        LOG.debug("Done");
+    }
+
+    /**
+     * Get all shows associated with the account
+     *
+     * @param credentials
+     * @return
+     */
+    public static List<TvShow> getAllShows(Credentials credentials) {
+        LOG.debug("Getting TV show list for user '" + credentials.getUsername() + "'");
+        List<TvShow> watchedShows = MANAGER.userService().libraryShowsWatched(credentials.getUsername()).fire();
+        LOG.info("Found " + watchedShows.size() + " watched shows in the collection");
+        return watchedShows;
+    }
+
+    /**
+     * Remove a show from the account completely
+     *
+     * @param shows
+     */
+    public static void removeShows(List<TvShow> shows) {
+        ShowService service = MANAGER.showService();
+
+        for (TvShow show : shows) {
+            LOG.debug("Removing '" + show.title + "' (IMDB: " + show.imdbId + ", TVDB: " + show.tvdbId + ")");
+            try {
+                if (StringUtils.isNotBlank(show.tvdbId)) {
+                    int tvdbId = NumberUtils.toInt(show.tvdbId);
+                    ShowService.EpisodeUnseenBuilder unseen = service.episodeUnseen(tvdbId);
+                    ShowService.EpisodeUnwatchlistBuilder unwatch = service.episodeUnwatchlist(tvdbId);
+
+                    for (TvShowSeason season : show.seasons) {
+                        for (Integer epnum : season.episodes.numbers) {
+                            unseen = unseen.episode(season.season, epnum);
+                            unwatch = unwatch.episode(season.season, epnum);
+                        }
+                    }
+
+                    unseen.fire();
+                    unwatch.fire();
+                    LOG.debug("Done '" + show.title + "'");
+                } else {
+                    LOG.warn("Failed to delete show! " + ToStringBuilder.reflectionToString(show, ToStringStyle.SIMPLE_STYLE));
+                }
+            } catch (TraktException ex) {
+                LOG.info("Exception: " + ex.getMessage(), ex);
+            }
+        }
+
+        LOG.debug("Done");
     }
 }

@@ -44,12 +44,21 @@ public class ProgressProcessor {
     private static final Logger LOG = Logger.getLogger(ProgressProcessor.class);
     private static MainWindow progressWindow;
 
-    public static void setProgressWindow(MainWindow newProgressWindow) {
+    /**
+     * Create the progress window and the populate with a title
+     * @param newProgressWindow
+     * @param title
+     */
+    public static void setProgressWindow(MainWindow newProgressWindow, String title) {
         progressWindow = newProgressWindow;
-        progressWindow.progestSetTitle("Parsing CompleteMovies.xml");
+        progressWindow.progestSetTitle(title);
         progressWindow.progressClearText();
     }
 
+    /**
+     * Write a progress message to the progress window
+     * @param message
+     */
     public static void progressMessage(String message) {
         progressWindow.progressAddText(message);
     }
@@ -119,6 +128,10 @@ public class ProgressProcessor {
         progressWindow.updateLibraryStats(cmLibrary.getStats());
     }
 
+    /**
+     * Send the information to trakt
+     * @param numberOfThreads
+     */
     public static void sendToTrakt(final int numberOfThreads) {
         // Clear the progress window and set up the bar
         progressWindow.progressClearText();
@@ -173,4 +186,6 @@ public class ProgressProcessor {
         progressWindow.progressAddText("Done!");
         progressWindow.progressAddText("");
     }
+
+
 }

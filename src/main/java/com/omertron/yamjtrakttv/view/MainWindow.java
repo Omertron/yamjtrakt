@@ -19,6 +19,8 @@
  */
 package com.omertron.yamjtrakttv.view;
 
+import com.jakewharton.trakt.entities.Movie;
+import com.jakewharton.trakt.entities.TvShow;
 import com.omertron.yamjtrakttv.YamjTraktApp;
 import com.omertron.yamjtrakttv.tools.ProgressProcessor;
 import com.omertron.yamjtrakttv.tools.TraktTools;
@@ -28,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import org.apache.commons.lang3.StringUtils;
@@ -173,6 +176,12 @@ public class MainWindow extends javax.swing.JFrame {
         mnuFileExit = new javax.swing.JMenuItem();
         mnuSettings = new javax.swing.JMenu();
         mnuMarkAllWatched = new javax.swing.JCheckBoxMenuItem();
+        mnuTrakt = new javax.swing.JMenu();
+        mnuGetMovieList = new javax.swing.JMenuItem();
+        mnuGetShowList = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        mnuClearMovies = new javax.swing.JMenuItem();
+        mnuClearShows = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
         mnuHelpAbout = new javax.swing.JMenuItem();
         mnuHelpDonate = new javax.swing.JMenuItem();
@@ -412,11 +421,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         dlgAbout.setTitle("About");
         dlgAbout.setAlwaysOnTop(true);
-        dlgAbout.setMaximumSize(new java.awt.Dimension(410, 410));
         dlgAbout.setMinimumSize(new java.awt.Dimension(410, 410));
         dlgAbout.setModal(true);
         dlgAbout.setName("About Dialog"); // NOI18N
-        dlgAbout.setPreferredSize(new java.awt.Dimension(410, 410));
         dlgAbout.setResizable(false);
 
         lblAboutLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/YAMJ.png"))); // NOI18N
@@ -554,6 +561,46 @@ public class MainWindow extends javax.swing.JFrame {
 
         mnuBar.add(mnuSettings);
 
+        mnuTrakt.setText("Trakt");
+        mnuTrakt.setActionCommand("mnuTrakt");
+
+        mnuGetMovieList.setText("Get Movie List");
+        mnuGetMovieList.setActionCommand("mnuGetMovieList");
+        mnuGetMovieList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuGetMovieListActionPerformed(evt);
+            }
+        });
+        mnuTrakt.add(mnuGetMovieList);
+
+        mnuGetShowList.setText("Get Show List");
+        mnuGetShowList.setActionCommand("mnuGetShowList");
+        mnuGetShowList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuGetShowListActionPerformed(evt);
+            }
+        });
+        mnuTrakt.add(mnuGetShowList);
+        mnuTrakt.add(jSeparator2);
+
+        mnuClearMovies.setText("Clear ALL Movies");
+        mnuClearMovies.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuClearMoviesActionPerformed(evt);
+            }
+        });
+        mnuTrakt.add(mnuClearMovies);
+
+        mnuClearShows.setText("Ckear ALL TV Shows");
+        mnuClearShows.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuClearShowsActionPerformed(evt);
+            }
+        });
+        mnuTrakt.add(mnuClearShows);
+
+        mnuBar.add(mnuTrakt);
+
         mnuHelp.setText("Help");
 
         mnuHelpAbout.setText("About");
@@ -657,12 +704,13 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // Exit the application
+        LOG.info("App exited normally");
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnLoadFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadFileActionPerformed
         fraProgress.setVisible(Boolean.TRUE);
-        ProgressProcessor.setProgressWindow(this);
+        ProgressProcessor.setProgressWindow(this, "Parsing CompleteMovies.xml");
 
         // Load the complete movies
         ProgressProcessor.parseCompleteMovies(YamjTraktApp.getLibrary(), YamjTraktApp.getLibrary().getPathCompleteMovie());
@@ -707,10 +755,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCredSaveActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        lblProgressTitle.setText("Adding videos to Trakt.tv");
+        String title = "Adding videos to Trakt.tv";
+        lblProgressTitle.setText(title);
         fraProgress.setVisible(Boolean.TRUE);
         btnProgressOK.setEnabled(Boolean.FALSE);
-        ProgressProcessor.setProgressWindow(this);
+        ProgressProcessor.setProgressWindow(this, title);
 
         int numberOfThreads = (Integer) spnProcessingThreads.getValue();
         ProgressProcessor.sendToTrakt(numberOfThreads);
@@ -749,6 +798,50 @@ public class MainWindow extends javax.swing.JFrame {
     private void mnuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuHelpAboutActionPerformed
         dlgAbout.setVisible(true);
     }//GEN-LAST:event_mnuHelpAboutActionPerformed
+
+    private void mnuGetMovieListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGetMovieListActionPerformed
+        LOG.debug("Getting Movie List..");
+        List<Movie> movies = TraktTools.getAllMovies(YamjTraktApp.getCredentials());
+
+        int count = 1;
+        StringBuilder sb;
+        for (Movie m : movies) {
+            sb = new StringBuilder("#");
+            sb.append(count++).append(": ");
+            sb.append("'").append(m.title).append("' ");
+            sb.append("IMDB=").append(m.imdbId);
+            sb.append(" TMDB=").append(m.tmdbId);
+            LOG.debug(sb.toString());
+        }
+
+    }//GEN-LAST:event_mnuGetMovieListActionPerformed
+
+    private void mnuGetShowListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGetShowListActionPerformed
+        LOG.debug("Getting Show List..");
+        List<TvShow> shows = TraktTools.getAllShows(YamjTraktApp.getCredentials());
+
+        int count = 1;
+        StringBuilder sb;
+        for (TvShow tv : shows) {
+            sb = new StringBuilder("#");
+            sb.append(count++).append(": ");
+            sb.append("'").append(tv.title).append("' ");
+            sb.append("IMDB=").append(tv.imdbId);
+            sb.append(" TVDB=").append(tv.tvdbId);
+            LOG.debug(sb.toString());
+        }
+
+    }//GEN-LAST:event_mnuGetShowListActionPerformed
+
+    private void mnuClearMoviesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClearMoviesActionPerformed
+        List<Movie> movies = TraktTools.getAllMovies(YamjTraktApp.getCredentials());
+        TraktTools.removeMovies(movies);
+    }//GEN-LAST:event_mnuClearMoviesActionPerformed
+
+    private void mnuClearShowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClearShowsActionPerformed
+        List<TvShow> shows = TraktTools.getAllShows(YamjTraktApp.getCredentials());
+        TraktTools.removeShows(shows);
+    }//GEN-LAST:event_mnuClearShowsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -809,6 +902,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JFrame fraProgress;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblAboutDescription;
     private javax.swing.JLabel lblAboutLogo;
     private javax.swing.JLabel lblCredApiUrl;
@@ -821,14 +915,19 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel lblProgressTitle;
     private javax.swing.JLabel lbllogo;
     private javax.swing.JMenuBar mnuBar;
+    private javax.swing.JMenuItem mnuClearMovies;
+    private javax.swing.JMenuItem mnuClearShows;
     private javax.swing.JMenu mnuFile;
     private javax.swing.JMenuItem mnuFileCredentials;
     private javax.swing.JMenuItem mnuFileExit;
+    private javax.swing.JMenuItem mnuGetMovieList;
+    private javax.swing.JMenuItem mnuGetShowList;
     private javax.swing.JMenu mnuHelp;
     private javax.swing.JMenuItem mnuHelpAbout;
     private javax.swing.JMenuItem mnuHelpDonate;
     private javax.swing.JCheckBoxMenuItem mnuMarkAllWatched;
     private javax.swing.JMenu mnuSettings;
+    private javax.swing.JMenu mnuTrakt;
     private javax.swing.JProgressBar pbProgress;
     private javax.swing.JPasswordField pwdCredPassword;
     private javax.swing.JScrollPane spProgress;

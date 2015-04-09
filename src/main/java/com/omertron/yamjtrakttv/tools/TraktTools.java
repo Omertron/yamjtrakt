@@ -48,7 +48,6 @@ public class TraktTools {
     private static final Logger LOG = Logger.getLogger(TraktTools.class);
     private static final int DEFAULT_PLAYS = 1;
     private static final ServiceManager MANAGER = new ServiceManager();
-    private static MainWindow progressWindow;
 
     protected TraktTools() {
         throw new UnsupportedOperationException("Do not use!");
@@ -274,13 +273,6 @@ public class TraktTools {
         } else {
             LOG.debug(video.getTitle() + " was not found on trakt.tv");
         }
-
-    }
-
-    public static void setProgressWindow(MainWindow newProgressWindow) {
-        progressWindow = newProgressWindow;
-        progressWindow.progestSetTitle("Processing videos on Trakt.tv");
-        progressWindow.progressClearText();
     }
 
     /**
@@ -323,7 +315,7 @@ public class TraktTools {
      * @param credentials
      * @return
      */
-    public static List<TvShow> getAllShows(Credentials credentials) {
+    public static List<TvShow> getWatchedShows(Credentials credentials) {
         LOG.debug("Getting TV show list for user '" + credentials.getUsername() + "'");
         List<TvShow> watchedShows = MANAGER.userService().libraryShowsWatched(credentials.getUsername()).fire();
         LOG.info("Found " + watchedShows.size() + " watched shows in the collection");
@@ -333,13 +325,25 @@ public class TraktTools {
     /**
      * Remove a show from the account completely
      *
+     * @param progressWindow
      * @param shows
      */
-    public static void removeShows(List<TvShow> shows) {
+    public static void removeShows(MainWindow progressWindow, List<TvShow> shows) {
+        // Clear the progress window
+        progressWindow.progressClearText();
+
+        // Set the progress bar
+        int count = 0;
+        progressWindow.progressBarLimits(0, shows.size());
+
         ShowService service = MANAGER.showService();
+        StringBuilder message;
 
         for (TvShow show : shows) {
-            LOG.debug("Removing '" + show.title + "' (IMDB: " + show.imdbId + ", TVDB: " + show.tvdbId + ")");
+            message = new StringBuilder("Removing '");
+            message.append(show.title).append("' (IMDB: ").append(show.imdbId).append(", TVDB: ").append(show.tvdbId).append(")");
+            progressWindow.progressAddText(message.toString());
+
             try {
                 if (StringUtils.isNotBlank(show.tvdbId)) {
                     int tvdbId = NumberUtils.toInt(show.tvdbId);
@@ -351,19 +355,27 @@ public class TraktTools {
                             unseen = unseen.episode(season.season, epnum);
                             unwatch = unwatch.episode(season.season, epnum);
                         }
+
+                        message = new StringBuilder("Removed Season ");
+                        message.append(season.season).append(" with ").append(season.episodes.count).append(" episodes.");
+                        progressWindow.progressAddText(message.toString());
                     }
 
                     unseen.fire();
                     unwatch.fire();
-                    LOG.debug("Done '" + show.title + "'");
+                    message = new StringBuilder("Done '");
+                    message.append(show.title).append("'");
+                    progressWindow.progressAddText(message.toString());
                 } else {
-                    LOG.warn("Failed to delete show! " + ToStringBuilder.reflectionToString(show, ToStringStyle.SIMPLE_STYLE));
+                    message = new StringBuilder("Failed to delete show! ");
+                    message.append(ToStringBuilder.reflectionToString(show, ToStringStyle.SIMPLE_STYLE));
+                    progressWindow.progressAddText(message.toString());
                 }
             } catch (TraktException ex) {
                 LOG.info("Exception: " + ex.getMessage(), ex);
             }
+            progressWindow.progressBarProgress(++count);
         }
-
-        LOG.debug("Done");
+        progressWindow.progressAddText("All entries processed.");
     }
 }

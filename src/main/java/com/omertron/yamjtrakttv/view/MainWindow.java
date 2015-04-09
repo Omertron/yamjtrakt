@@ -94,13 +94,18 @@ public class MainWindow extends javax.swing.JFrame {
         updateLibraryStats(YamjTraktApp.getLibrary().getStats());
     }
 
-    /*
-     * Control the progress window
+    /**
+     * Set the progress window title
+     * @param progressTitle
      */
-    public void progestSetTitle(String progressTitle) {
+    public void progessSetTitle(String progressTitle) {
         lblProgressTitle.setText(progressTitle);
     }
 
+    /**
+     * Add text to the progress window
+     * @param progressText
+     */
     public synchronized void progressAddText(String progressText) {
         taProgress.append(progressText);
         taProgress.append("\n");
@@ -108,20 +113,52 @@ public class MainWindow extends javax.swing.JFrame {
         LOG.debug(progressText);
     }
 
+    /**
+     * Clear the text from the progress window
+     */
     public void progressClearText() {
         taProgress.setText("");
     }
 
+    /**
+     * Show or hide the progress window
+     * @param visible
+     */
+    public void progressVisible(boolean visible) {
+        fraProgress.setVisible(visible);
+    }
+
+    /**
+     * Enable or disable the OK button
+     * @param enabled
+     */
+    public void progressOk(boolean enabled) {
+        btnProgressOK.setEnabled(enabled);
+    }
+
+    /**
+     * Set the progress bar start and end
+     * @param min
+     * @param max
+     */
     public void progressBarLimits(int min, int max) {
         pbProgress.setMinimum(min);
         pbProgress.setMaximum(max);
         pbProgress.setValue(min);
     }
 
+    /**
+     * Set the progress bar level
+     * @param progress
+     */
     public void progressBarProgress(int progress) {
         pbProgress.setValue(progress);
     }
 
+    /**
+     * Update the
+     * @param updateText
+     */
     public void updateLibraryStats(String updateText) {
         txtLibraryStats.setText(updateText);
     }
@@ -172,14 +209,14 @@ public class MainWindow extends javax.swing.JFrame {
         mnuBar = new javax.swing.JMenuBar();
         mnuFile = new javax.swing.JMenu();
         mnuFileCredentials = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        sepMenuFile = new javax.swing.JPopupMenu.Separator();
         mnuFileExit = new javax.swing.JMenuItem();
         mnuSettings = new javax.swing.JMenu();
         mnuMarkAllWatched = new javax.swing.JCheckBoxMenuItem();
         mnuTrakt = new javax.swing.JMenu();
         mnuGetMovieList = new javax.swing.JMenuItem();
         mnuGetShowList = new javax.swing.JMenuItem();
-        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        sepMenuTrakt = new javax.swing.JPopupMenu.Separator();
         mnuClearMovies = new javax.swing.JMenuItem();
         mnuClearShows = new javax.swing.JMenuItem();
         mnuHelp = new javax.swing.JMenu();
@@ -355,6 +392,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        fraProgress.setAlwaysOnTop(true);
         fraProgress.setMinimumSize(new java.awt.Dimension(650, 300));
 
         pbProgress.setMaximumSize(new java.awt.Dimension(146, 25));
@@ -541,7 +579,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         mnuFileCredentials.setText("Credentials");
         mnuFile.add(mnuFileCredentials);
-        mnuFile.add(jSeparator1);
+        mnuFile.add(sepMenuFile);
 
         mnuFileExit.setText("Exit");
         mnuFile.add(mnuFileExit);
@@ -581,7 +619,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         mnuTrakt.add(mnuGetShowList);
-        mnuTrakt.add(jSeparator2);
+        mnuTrakt.add(sepMenuTrakt);
 
         mnuClearMovies.setText("Clear ALL Movies");
         mnuClearMovies.addActionListener(new java.awt.event.ActionListener() {
@@ -591,7 +629,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mnuTrakt.add(mnuClearMovies);
 
-        mnuClearShows.setText("Ckear ALL TV Shows");
+        mnuClearShows.setText("Clear ALL TV Shows");
         mnuClearShows.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuClearShowsActionPerformed(evt);
@@ -755,11 +793,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCredSaveActionPerformed
 
     private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
-        String title = "Adding videos to Trakt.tv";
-        lblProgressTitle.setText(title);
         fraProgress.setVisible(Boolean.TRUE);
         btnProgressOK.setEnabled(Boolean.FALSE);
-        ProgressProcessor.setProgressWindow(this, title);
+        ProgressProcessor.setProgressWindow(this, "Adding videos to Trakt.tv");
 
         int numberOfThreads = (Integer) spnProcessingThreads.getValue();
         ProgressProcessor.sendToTrakt(numberOfThreads);
@@ -818,7 +854,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void mnuGetShowListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuGetShowListActionPerformed
         LOG.debug("Getting Show List..");
-        List<TvShow> shows = TraktTools.getAllShows(YamjTraktApp.getCredentials());
+        List<TvShow> shows = TraktTools.getWatchedShows(YamjTraktApp.getCredentials());
 
         int count = 1;
         StringBuilder sb;
@@ -839,8 +875,18 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuClearMoviesActionPerformed
 
     private void mnuClearShowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClearShowsActionPerformed
-        List<TvShow> shows = TraktTools.getAllShows(YamjTraktApp.getCredentials());
-        TraktTools.removeShows(shows);
+        ProgressProcessor.setProgressWindow(this, "Removing TV Shows from Trakt");
+        btnProgressOK.setEnabled(Boolean.FALSE);
+
+        progressBarLimits(0, 1);
+        ProgressProcessor.progressMessage("Loading shows from Trakt");
+        List<TvShow> shows = TraktTools.getWatchedShows(YamjTraktApp.getCredentials());
+        ProgressProcessor.progressMessage("Done loading shows");
+        progressBarProgress(1);
+
+        TraktTools.removeShows(this, shows);
+
+        btnProgressOK.setEnabled(Boolean.TRUE);
     }//GEN-LAST:event_mnuClearShowsActionPerformed
 
     /**
@@ -901,8 +947,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JDialog dlgCredentials;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JFrame fraProgress;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
-    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel lblAboutDescription;
     private javax.swing.JLabel lblAboutLogo;
     private javax.swing.JLabel lblCredApiUrl;
@@ -930,6 +974,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu mnuTrakt;
     private javax.swing.JProgressBar pbProgress;
     private javax.swing.JPasswordField pwdCredPassword;
+    private javax.swing.JPopupMenu.Separator sepMenuFile;
+    private javax.swing.JPopupMenu.Separator sepMenuTrakt;
     private javax.swing.JScrollPane spProgress;
     private javax.swing.JSpinner spnProcessingThreads;
     private javax.swing.JTextArea taProgress;

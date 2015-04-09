@@ -301,6 +301,7 @@
     </Container>
     <Container class="javax.swing.JFrame" name="fraProgress">
       <Properties>
+        <Property name="alwaysOnTop" type="boolean" value="true"/>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[650, 300]"/>
         </Property>
@@ -505,7 +506,7 @@
                 <Property name="text" type="java.lang.String" value="Credentials"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="sepMenuFile">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuFileExit">
               <Properties>
@@ -554,7 +555,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuGetShowListActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator2">
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="sepMenuTrakt">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuClearMovies">
               <Properties>
@@ -566,7 +567,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuClearShows">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ckear ALL TV Shows"/>
+                <Property name="text" type="java.lang.String" value="Clear ALL TV Shows"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuClearShowsActionPerformed"/>

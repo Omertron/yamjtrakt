@@ -46,17 +46,20 @@ public class ProgressProcessor {
 
     /**
      * Create the progress window and the populate with a title
+     *
      * @param newProgressWindow
      * @param title
      */
     public static void setProgressWindow(MainWindow newProgressWindow, String title) {
         progressWindow = newProgressWindow;
-        progressWindow.progestSetTitle(title);
         progressWindow.progressClearText();
+        progressWindow.progessSetTitle(title);
+        progressWindow.setVisible(Boolean.TRUE);
     }
 
     /**
      * Write a progress message to the progress window
+     *
      * @param message
      */
     public static void progressMessage(String message) {
@@ -130,6 +133,7 @@ public class ProgressProcessor {
 
     /**
      * Send the information to trakt
+     *
      * @param numberOfThreads
      */
     public static void sendToTrakt(final int numberOfThreads) {
@@ -186,6 +190,5 @@ public class ProgressProcessor {
         progressWindow.progressAddText("Done!");
         progressWindow.progressAddText("");
     }
-
 
 }
